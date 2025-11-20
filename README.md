@@ -23,6 +23,11 @@ A comprehensive study guide and learning repository for the Microsoft AB-100 cer
 
 ```
 ab100/
+├── course/                        # O'Reilly Live Training materials
+│   ├── COURSE_PLAN.md            # Complete 4-segment course plan
+│   ├── demos/                    # Live demonstration scripts
+│   ├── exercises/                # Hands-on practice exercises
+│   └── slides/                   # Slide deck outlines
 ├── 01-plan-ai-solutions/          # Planning domain (25-30%)
 │   ├── README.md                  # Domain overview
 │   ├── analyze-requirements.md    # Requirements analysis
@@ -40,12 +45,27 @@ ab100/
 │   ├── alm-process.md            # ALM for AI solutions
 │   └── security-governance.md    # Security and compliance
 ├── resources/
-│   ├── links.md                  # Official documentation links
+│   ├── links.md                  # Official documentation links (400+)
 │   ├── cheat-sheet.md            # Quick reference guide
 │   └── glossary.md               # Key terms and definitions
 └── practice/
     └── scenarios.md              # Practice scenarios
 ```
+
+## O'Reilly Live Training
+
+This repository serves as the companion materials for the **Agentic AI Business Solutions Architect** O'Reilly Live Training course.
+
+**Course Duration:** 4 hours (four 50-minute segments)
+
+| Segment | Topic | Materials |
+|---------|-------|-----------|
+| 1 | Planning AI Solutions | [Demos](course/demos/segment1-roi-calculator.md) • [Exercises](course/exercises/segment1-exercises.md) |
+| 2 | Designing AI Solutions | [Demos](course/demos/segment2-multi-agent-build.md) • [Exercises](course/exercises/segment2-exercises.md) |
+| 3 | Deploying AI Solutions | [Demos](course/demos/segment3-deployment-monitoring.md) • [Exercises](course/exercises/segment3-exercises.md) |
+| 4 | Security & Exam Mastery | [Demos](course/demos/segment4-security-stack.md) • [Exercises](course/exercises/segment4-exercises.md) |
+
+See the [Course Plan](course/COURSE_PLAN.md) for full details.
 
 ## Candidate Profile
 
