@@ -2,31 +2,49 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this repo is
+## Repository purpose
 
-A Markdown-only teaching/learning repository for Tim Warner's O'Reilly Live Training course **"Agentic AI Business Solutions Architect"** and the companion Microsoft **AB-100** certification study guide. There is **no application code, no build system, and no test suite** — the deliverable is prose, tables, and structured study material. Do not add `package.json`, linters, CI, or tooling unless the user explicitly asks.
+O'Reilly Live Learning course repo for **Agentic AI Business Solutions Architect** — a 4-hour instructor-led course aligned to Microsoft's **AB-100** certification exam. This is Tim Warner's instructor source of truth and learner reference material.
 
-## Repository architecture
+The repo is **currently scaffolding only** — directory structure, cross-links, and placeholders. No teaching content has been written yet. When the user asks for course content, write into the existing scaffold rather than creating new top-level folders.
 
-Content is organized around two parallel hierarchies that intentionally cross-reference each other:
+## Course structure (4 hours)
 
-1. **Exam-objective hierarchy** (`01-plan-ai-solutions/`, `02-design-ai-solutions/`, `03-deploy-ai-solutions/`) — mirrors the three AB-100 skill domains and their official weightings (25-30% / 25-30% / 40-45%). Each domain directory has a `README.md` overview plus topic files named after the exam sub-objectives.
-2. **Course-delivery hierarchy** (`course/`) — four 50-minute segments (`segment1`–`segment4`) that map onto the exam domains. Every segment has three parallel files across `course/demos/`, `course/exercises/`, and `course/slides/`. The canonical plan lives in `course/COURSE_PLAN.md`.
+| Hour | Theme                    | AB-100 Domain                                  |
+| ---- | ------------------------ | ---------------------------------------------- |
+| 1    | Plan AI Solutions        | Plan AI-powered business solutions (25–30%)    |
+| 2    | Design AI Solutions      | Design AI-powered business solutions (25–30%)  |
+| 3    | Deploy AI Solutions      | Deploy — implementation & operations (~20–25%) |
+| 4    | Security & Exam Mastery  | Deploy — security & governance (~20–25%)       |
 
-Supporting material sits in `resources/` (`links.md`, `cheat-sheet.md`, `glossary.md`) and `practice/scenarios.md`. The root `README.md` is the navigation hub and its structure diagram is the source of truth for what exists — keep it in sync when adding or moving files.
+The canonical plan lives in [`docs/course-plan.md`](docs/course-plan.md). Exam objective mapping is in [`docs/exam-objectives.md`](docs/exam-objectives.md).
 
-When editing one hierarchy, check the other. A new concept added to a `0X-*/` domain file usually needs a matching reference in the relevant `course/segmentN-*.md` trio, and vice versa. Exam weightings appear in multiple places (root README, domain READMEs, course README, COURSE_PLAN) — change them everywhere or nowhere.
+## Layout
 
-## Content conventions
+```text
+ab100/
+├── docs/                     # Course plan + exam objectives
+├── images/                   # Cover and diagrams (resized for README display)
+├── scripts/                  # Setup helpers (if needed)
+└── src/                      # Per-hour teaching materials
+    ├── hour1-plan/           # AB-100 Domain 1
+    ├── hour2-design/         # AB-100 Domain 2
+    ├── hour3-deploy/         # AB-100 Domain 3 (implementation)
+    └── hour4-security/       # AB-100 Domain 3 (security/governance) + exam prep
+```
 
-- **Segment numbering** is 1-indexed (`segment1` … `segment4`); **domain numbering** is zero-padded (`01-plan-ai-solutions`). Follow the existing pattern when adding siblings.
-- Domain and segment files lean heavily on Markdown tables for comparisons (exam weights, technology matrices, build-vs-buy). Prefer tables over bullet lists when presenting parallel items — it matches the house style.
-- Microsoft product names must be exact: *Microsoft 365 Copilot*, *Copilot Studio*, *Azure AI Foundry*, *Azure OpenAI*, *Dynamics 365* (with the space). Protocol names are **MCP** (Model Context Protocol) and **A2A** (Agent2Agent).
-- This is an **unofficial** study guide (see the disclaimer in `README.md`). Do not claim Microsoft endorsement, and link to `https://learn.microsoft.com/credentials/certifications/exams/ab-100/` as the authoritative source.
-- Course metadata (duration, segment count, instructor, publisher) is canonical in `course/COURSE_PLAN.md`. When it conflicts with anything else, `COURSE_PLAN.md` wins.
+**There is no build system, no tests, no application code.** The deliverable is Markdown content. Do not add `package.json`, linters beyond `.markdownlint.json`, or CI unless the user explicitly asks.
 
-## Working in this repo
+## Authoring conventions
 
-- There is nothing to build, lint, or test. "Done" means the Markdown renders correctly on GitHub and internal links resolve.
-- When adding a new file, update the tree diagram in the root `README.md` and the nearest parent `README.md` index so readers can find it.
-- When renaming or moving files, grep for the old path across `*.md` before committing — cross-references are plentiful and easy to miss.
+- **Microsoft product names** — exact casing: *Microsoft 365 Copilot*, *Copilot Studio*, *Azure AI Foundry*, *Azure OpenAI*, *Dynamics 365*. Protocols: **MCP** (Model Context Protocol), **A2A** (Agent2Agent).
+- **Hour folders** — `hourN-theme/` (1-indexed). Each has a `README.md` with learning objectives, teaching flow, demo, exercise, and resources sections.
+- **Markdown lint** — `.markdownlint.json` enforces line length 120, 2-space list indent, siblings-only MD024. Run `npx markdownlint-cli2 "**/*.md"` to validate.
+- **Cross-links** — when moving or renaming files, grep `*.md` for the old path before committing. The README tree diagram, `docs/course-plan.md` schedule table, and each hour's `Resources` section all cross-reference each other.
+- **Disclaimer** — unofficial study guide. Never imply Microsoft endorsement. Link to <https://learn.microsoft.com/credentials/certifications/exams/ab-100/> as the authoritative source for exam info.
+
+## When filling in scaffolding
+
+Each hour's `README.md` has bracketed italic placeholders (`_Objective 1_`, `_Hook, context, agenda_`, etc.). When the user asks to populate an hour, replace the placeholders in-place — don't create parallel files. Keep the section structure (Learning objectives → Teaching flow → Demo → Exercise → Resources) unless the user explicitly changes it.
+
+`docs/course-plan.md` and `docs/exam-objectives.md` are the canonical specs. If an hour's content conflicts with them, the docs win, or update both.

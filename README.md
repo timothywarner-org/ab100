@@ -15,164 +15,118 @@
 
 # AB-100: Agentic AI Business Solutions Architect
 
-Welcome! This is the official learning hub for my O'Reilly Live Training course, **Agentic AI Business Solutions Architect**, and a comprehensive study guide for Microsoft's **AB-100** certification exam.
+**O'Reilly Live Learning Course** | 4 Hours | Microsoft AB-100 Exam Prep + Real-World Agentic AI
 
-> **Delight is the name of the game.**
-> Friendly, human, and neurodivergent-friendly — just like Tim Warner's teaching style.
-> Emoji? Yes, but not too many. Clarity? Always.
+Design, deploy, and govern multi-agent AI business solutions across the Microsoft stack — and walk in prepared to pass Microsoft's **AB-100** certification exam on the first attempt.
 
----
+## Course overview
 
-## 🎯 Exam Overview
+| Hour | Theme                        | AB-100 Domain                                   |
+| ---- | ---------------------------- | ----------------------------------------------- |
+| 1    | Plan AI Solutions            | Plan AI-powered business solutions (25–30%)    |
+| 2    | Design AI Solutions          | Design AI-powered business solutions (25–30%)  |
+| 3    | Deploy AI Solutions          | Deploy — implementation & operations (~20–25%) |
+| 4    | Security & Exam Mastery      | Deploy — security & governance (~20–25%)       |
 
-| Detail | Information |
-|--------|-------------|
-| **Exam Code** | AB-100 |
-| **Title** | Agentic AI Business Solutions Architect |
-| **Focus** | AI-driven business solutions using Microsoft technologies |
-| **Target Audience** | Solution architects with AI expertise |
+## Prerequisites
 
-## 📊 Skills Measured
+- _To be finalized — see [`docs/course-plan.md`](docs/course-plan.md)_
 
-| Domain | Weight |
-|--------|--------|
-| [Plan AI-powered business solutions](./01-plan-ai-solutions/) | 25-30% |
-| [Design AI-powered business solutions](./02-design-ai-solutions/) | 25-30% |
-| [Deploy AI-powered business solutions](./03-deploy-ai-solutions/) | 40-45% |
+## Repository structure
 
----
-
-## 📚 Repository Structure
-
-```
+```text
 ab100/
-├── course/                        # O'Reilly Live Training materials
-│   ├── COURSE_PLAN.md             # Complete 4-segment course plan
-│   ├── demos/                     # Live demonstration scripts
-│   ├── exercises/                 # Hands-on practice exercises
-│   └── slides/                    # Slide deck outlines
-├── 01-plan-ai-solutions/          # Planning domain (25-30%)
-│   ├── analyze-requirements.md    # Requirements analysis
-│   ├── ai-strategy.md             # AI strategy design
-│   └── roi-analysis.md            # Cost-benefit analysis
-├── 02-design-ai-solutions/        # Design domain (25-30%)
-│   ├── agents-design.md           # Agent design patterns
-│   ├── extensibility.md           # AI solution extensibility
-│   └── orchestration.md           # Configuration orchestration
-├── 03-deploy-ai-solutions/        # Deploy domain (40-45%)
-│   ├── monitoring.md              # Analysis and monitoring
-│   ├── testing.md                 # Testing strategies
-│   ├── alm-process.md             # ALM for AI solutions
-│   └── security-governance.md     # Security and compliance
-├── resources/
-│   ├── links.md                   # Official documentation links (400+)
-│   ├── cheat-sheet.md             # Quick reference guide
-│   └── glossary.md                # Key terms and definitions
-└── practice/
-    └── scenarios.md               # Practice scenarios
+├── README.md                 # This file
+├── CLAUDE.md                 # Claude Code instructions
+├── CODE_OF_CONDUCT.md        # Community guidelines
+├── contributing.md           # Contribution guide
+├── SECURITY.md               # Security policy
+├── LICENSE                   # MIT License
+├── .markdownlint.json        # Markdown linting config
+│
+├── docs/                     # Course plan + exam objectives
+│   ├── course-plan.md
+│   └── exam-objectives.md
+│
+├── images/                   # Course images and assets
+├── scripts/                  # Setup helpers (if needed)
+└── src/                      # Per-hour teaching materials
+    ├── hour1-plan/           # Plan AI Solutions
+    ├── hour2-design/         # Design AI Solutions
+    ├── hour3-deploy/         # Deploy AI Solutions
+    └── hour4-security/       # Security & Exam Mastery
 ```
 
----
+## Quick start
 
-## 🎓 O'Reilly Live Training
+1. **Clone the repository**
 
-This repository serves as the companion materials for the **Agentic AI Business Solutions Architect** O'Reilly Live Training course.
+   ```bash
+   git clone https://github.com/timothywarner-org/ab100.git
+   ```
 
-**Course Duration:** 4 hours (four 50-minute segments)
+2. **Hour 1 — Plan AI Solutions:** [`src/hour1-plan/`](src/hour1-plan/)
+3. **Hour 2 — Design AI Solutions:** [`src/hour2-design/`](src/hour2-design/)
+4. **Hour 3 — Deploy AI Solutions:** [`src/hour3-deploy/`](src/hour3-deploy/)
+5. **Hour 4 — Security & Exam Mastery:** [`src/hour4-security/`](src/hour4-security/)
 
-| Segment | Topic | Materials |
-|---------|-------|-----------|
-| 1 | Planning AI Solutions | [Demos](course/demos/segment1-roi-calculator.md) • [Exercises](course/exercises/segment1-exercises.md) |
-| 2 | Designing AI Solutions | [Demos](course/demos/segment2-multi-agent-build.md) • [Exercises](course/exercises/segment2-exercises.md) |
-| 3 | Deploying AI Solutions | [Demos](course/demos/segment3-deployment-monitoring.md) • [Exercises](course/exercises/segment3-exercises.md) |
-| 4 | Security & Exam Mastery | [Demos](course/demos/segment4-security-stack.md) • [Exercises](course/exercises/segment4-exercises.md) |
+## Hour summaries
 
-See the [Course Plan](course/COURSE_PLAN.md) for full details.
+### Hour 1: Plan AI Solutions
 
----
+**Theme:** _TBD before delivery_
 
-## 👤 Candidate Profile
+Maps to AB-100 Domain 1 (25–30%). See [`src/hour1-plan/`](src/hour1-plan/).
 
-As a candidate for this exam, you should have expertise in:
+### Hour 2: Design AI Solutions
 
-- **AI Architecture** — Designing solutions using AI, generative AI, and various AI services
-- **Agentic Solutions** — Building agentic-first and multi-agent orchestrated solutions
-- **Microsoft Stack** — Dynamics 365, Power Platform, Copilot Studio, Azure AI services, Azure OpenAI
-- **Protocols** — Agent2Agent (A2A) and Model Context Protocol (MCP)
-- **Responsible AI** — Compliance and Microsoft responsible AI guidelines
-- **Security** — Securing AI models, data workflows, and defending against prompt manipulation
+**Theme:** _TBD before delivery_
 
----
+Maps to AB-100 Domain 2 (25–30%). See [`src/hour2-design/`](src/hour2-design/).
 
-## 🛠️ Key Technologies
+### Hour 3: Deploy AI Solutions
 
-### Microsoft Platforms
-- **Microsoft 365 Copilot** — Enterprise AI assistant
-- **Copilot Studio** — Custom agent development
-- **Azure AI Foundry** — AI model development and deployment
-- **Azure AI Services** — Cognitive services and APIs
-- **Azure OpenAI** — GPT models and embeddings
+**Theme:** _TBD before delivery_
 
-### Business Applications
-- **Dynamics 365 Sales** — CRM and sales automation
-- **Dynamics 365 Customer Service** — Service management
-- **Dynamics 365 Finance** — Financial operations
-- **Dynamics 365 Supply Chain Management** — Operations management
-- **Power Platform** — Low-code development
+Maps to AB-100 Domain 3 implementation & operations (~20–25%). See [`src/hour3-deploy/`](src/hour3-deploy/).
 
----
+### Hour 4: Security & Exam Mastery
 
-## 🚀 How to Use This Repo
+**Theme:** _TBD before delivery_
 
-1. **Clone the repo:**
-   `git clone https://github.com/timothywarner-org/ab100.git`
-2. **Start with Planning (25-30%)** — Understand requirements and strategy in [`01-plan-ai-solutions/`](./01-plan-ai-solutions/)
-3. **Move to Design (25-30%)** — Learn architecture patterns in [`02-design-ai-solutions/`](./02-design-ai-solutions/)
-4. **Focus on Deployment (40-45%)** — Master implementation and operations in [`03-deploy-ai-solutions/`](./03-deploy-ai-solutions/)
-5. **Reference the [cheat sheet](./resources/cheat-sheet.md)** for quick reviews, and the [glossary](./resources/glossary.md) for unfamiliar terms
-6. **Practice with [scenarios](./practice/scenarios.md)** to test your knowledge
+Maps to AB-100 Domain 3 security & governance (~20–25%), plus exam readiness. See [`src/hour4-security/`](src/hour4-security/).
 
----
+## Course schedule
 
-## 📖 Learning Resources
+| Time        | Activity                                                  |
+| ----------- | --------------------------------------------------------- |
+| 0:00 – 0:50 | Hour 1 — Plan AI Solutions                                |
+| 0:50 – 1:00 | Q&A + Break                                               |
+| 1:00 – 1:50 | Hour 2 — Design AI Solutions                              |
+| 1:50 – 2:00 | Q&A + Break                                               |
+| 2:00 – 2:50 | Hour 3 — Deploy AI Solutions                              |
+| 2:50 – 3:00 | Q&A + Break                                               |
+| 3:00 – 3:50 | Hour 4 — Security & Exam Mastery                          |
+| 3:50 – 4:00 | Wrap-up, resources, next steps                            |
 
-### Official Microsoft Resources
-- [Azure AI Foundry Documentation](https://learn.microsoft.com/azure/ai-studio/)
-- [Azure AI Services](https://learn.microsoft.com/azure/ai-services/)
-- [Copilot Studio Documentation](https://learn.microsoft.com/microsoft-copilot-studio/)
-- [Power Platform Documentation](https://learn.microsoft.com/power-platform/)
-- [Dynamics 365 Documentation](https://learn.microsoft.com/dynamics365/)
+Full plan in [`docs/course-plan.md`](docs/course-plan.md).
 
-### Training Paths
-- [Microsoft Learn — AI Fundamentals](https://learn.microsoft.com/training/paths/get-started-with-artificial-intelligence-on-azure/)
-- [Copilot Studio Learning Path](https://learn.microsoft.com/training/paths/work-power-virtual-agents/)
-- [Azure AI Engineer Associate](https://learn.microsoft.com/credentials/certifications/azure-ai-engineer/)
+## Instructor
 
-### Community Resources
-- [Microsoft Q&A](https://learn.microsoft.com/answers/)
-- [Microsoft Tech Community](https://techcommunity.microsoft.com/)
-- [Microsoft MVP Program](https://mvp.microsoft.com/)
+**Tim Warner** — Microsoft MVP (Azure AI and Cloud/Datacenter Management), Microsoft Certified Trainer
 
----
+- [LinkedIn](https://www.linkedin.com/in/timothywarner/)
+- [Website](https://techtrainertim.com/)
+- [O'Reilly Author Page](https://learning.oreilly.com/search/?query=Tim%20Warner)
 
-## 🤝 Contributing
-- PRs, issues, and feedback are welcome!
-- Feel free to submit issues or pull requests to improve this study guide.
-
----
-
-## 🧠 Neurodivergent-Friendly, Always
-This repo is designed for clarity, accessibility, and delight.
-If you have suggestions to make it even more inclusive, please let me know!
-
----
-
-## ⚠️ Disclaimer
+## Disclaimer
 
 This is an **unofficial** study guide. Always refer to the [official Microsoft exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-100/) for the most current information.
 
----
-
-## 📜 License
+## License
 
 MIT License. See [`LICENSE`](./LICENSE) for details.
+
+---
+
+**Questions?** Open an issue or reach out via the course chat during live sessions.
