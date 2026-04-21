@@ -45,4 +45,4 @@ _One-paragraph description of the course. Who it's for, what they'll build, and 
 | 3    | Deploy AI-powered business solutions   | 20–25%        |
 | 4    | Deploy — security & governance subset  | 20–25%        |
 
-See [`exam-objectives.md`](./exam-objectives.md) for detailed objective-to-segment mapping.
+See [`../references/ab100-objectives.md`](../references/ab100-objectives.md) for the full AB-100 skills-measured list (synced from the Microsoft Learn study guide).

@@ -31,4 +31,4 @@ _Hands-on exercise for learners to complete during or after the segment._
 ## Resources
 
 - [Course plan](../../docs/course-plan.md)
-- [Exam objectives — Domain 3](../../docs/exam-objectives.md#domain-3--deploy-ai-powered-business-solutions-4045)
+- [Exam objectives — Domain 3](../../references/ab100-objectives.md#deploy-ai-powered-business-solutions-4045)

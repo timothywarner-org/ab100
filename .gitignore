@@ -1,3 +1,10 @@
+# Reference repos cloned for research / retargeting
+temp/
+
+# Global gitignore hides .vscode/ — we need these two files tracked for MCP auto-config
+!.vscode/mcp.json
+!.vscode/extensions.json
+
 # Logs
 logs
 *.log

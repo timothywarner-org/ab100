@@ -19,6 +19,11 @@
 
 Design, deploy, and govern multi-agent AI business solutions across the Microsoft stack — and walk in prepared to pass Microsoft's **AB-100** certification exam on the first attempt.
 
+This repo has **two sides**:
+
+1. **Live training scaffolding** — hour-by-hour course material in [`src/`](src/) and the plan in [`docs/`](docs/).
+2. **AB-100 Cert Buddy** — a GitHub Copilot agent in [`.github/`](.github/) that generates exam-realistic practice questions, short architect-grade labs, and personalized study plans, all grounded in **Microsoft Learn** via MCP. Open the repo in VS Code and invoke `@ab100-cert-buddy-agent` in Copilot Chat. See the [Cert Buddy quick start](#ab-100-cert-buddy) below.
+
 ## Course overview
 
 | Hour | Theme                        | AB-100 Domain                                   |
@@ -43,10 +48,33 @@ ab100/
 ├── SECURITY.md               # Security policy
 ├── LICENSE                   # MIT License
 ├── .markdownlint.json        # Markdown linting config
+├── .editorconfig             # Editor formatting consistency
 │
-├── docs/                     # Course plan + exam objectives
-│   ├── course-plan.md
-│   └── exam-objectives.md
+├── .github/                  # Cert Buddy agent + skills + prompts
+│   ├── agents/
+│   │   └── ab100-cert-buddy-agent.agent.md
+│   ├── skills/
+│   │   ├── ab100-item-creator/SKILL.md
+│   │   ├── ab100-lab-creator/SKILL.md
+│   │   └── ab100-study-planner/SKILL.md
+│   ├── prompts/
+│   │   ├── ab100-practice-question.prompt.md
+│   │   ├── ab100-practice-lab.prompt.md
+│   │   └── ab100-study-planner.prompt.md
+│   ├── copilot-instructions.md
+│   └── workflows/validate.yml
+│
+├── .vscode/                  # MCP server + recommended extensions
+│   ├── mcp.json
+│   └── extensions.json
+│
+├── docs/                     # Course plan + reference notes
+│   └── course-plan.md
+│
+├── references/               # Cert Buddy grounding data
+│   ├── ab100-objectives.md   # AB-100 skills measured (synced from Learn)
+│   ├── fictional-companies.md
+│   └── style-guide.md
 │
 ├── images/                   # Course images and assets
 ├── scripts/                  # Setup helpers (if needed)
@@ -118,6 +146,73 @@ Full plan in [`docs/course-plan.md`](docs/course-plan.md).
 - [LinkedIn](https://www.linkedin.com/in/timothywarner/)
 - [Website](https://techtrainertim.com/)
 - [O'Reilly Author Page](https://learning.oreilly.com/search/?query=Tim%20Warner)
+
+## AB-100 Cert Buddy
+
+An AI-powered study companion for the **Microsoft AB-100: Agentic AI Business Solutions Architect** certification, built entirely on GitHub Copilot agents. No application code — the buddy lives in [`.github/`](.github/) as agent definitions, skill specs, prompt templates, and an MCP server configuration that turns GitHub Copilot Chat into an interactive exam coach.
+
+The agent generates **exam-realistic practice questions** with two-phase interactive evaluation, **short hands-on labs** (15–25 minutes) across agent authoring, design walkthroughs, ALM, and governance, and **personalized study plans** based on your self-assessed confidence across the three AB-100 domains. All content is original and grounded in Microsoft Learn via MCP.
+
+### Cert Buddy prerequisites
+
+| Requirement | Purpose |
+| --- | --- |
+| **VS Code** | IDE with Copilot Chat support |
+| **GitHub Copilot Chat extension** | Runs the agent and skills inside VS Code |
+| **Microsoft 365 tenant** | Required for Copilot Studio and Microsoft 365 Copilot labs |
+| **Copilot Studio trial** | [Start a trial](https://copilotstudio.microsoft.com) — required for hands-on Copilot Studio labs |
+| **Azure subscription** (optional) | Only needed for Microsoft Foundry labs that create Azure resources |
+
+No API keys, Node.js, or Python are required. The Microsoft Learn MCP server is a free hosted service with no sign-up.
+
+### Cert Buddy quick start
+
+1. Open the folder in VS Code:
+
+   ```bash
+   code ab100
+   ```
+
+2. The Microsoft Learn MCP server is defined in [`.vscode/mcp.json`](.vscode/mcp.json) and auto-configures when the workspace loads.
+
+3. Open **GitHub Copilot Chat** and invoke the agent:
+
+   ```text
+   @ab100-cert-buddy-agent Generate 5 practice questions on Copilot Studio extensibility with MCP
+   ```
+
+   Or use the slash commands. Type `/` in Copilot Chat:
+
+   ```text
+   /ab100-practice-question
+   /ab100-practice-lab
+   /ab100-study-planner
+   ```
+
+### Cert Buddy skills
+
+| Skill | File | What it does |
+| --- | --- | --- |
+| `ab100-item-creator` | [`.github/skills/ab100-item-creator/SKILL.md`](.github/skills/ab100-item-creator/SKILL.md) | Exam-realistic AB-100 practice questions with two-phase interactive delivery (question → wait → evaluate). |
+| `ab100-lab-creator` | [`.github/skills/ab100-lab-creator/SKILL.md`](.github/skills/ab100-lab-creator/SKILL.md) | 15–25 minute self-validating labs across agent authoring, design walkthroughs, ALM, and governance. |
+| `ab100-study-planner` | [`.github/skills/ab100-study-planner/SKILL.md`](.github/skills/ab100-study-planner/SKILL.md) | Personalized study plans based on confidence across the three AB-100 domains, with real Microsoft Learn module links. |
+
+### Cert Buddy MCP server
+
+| Server ID | Technology | Purpose |
+| --- | --- | --- |
+| `ab100buddy-mslearn` | `https://learn.microsoft.com/api/mcp` (HTTP) | Free Microsoft Learn MCP server — no API keys, no sign-up. Provides `microsoft_docs_search`, `microsoft_docs_fetch`, and `microsoft_code_sample_search`. Grounds all cert-buddy content in official Microsoft documentation. |
+
+### Cert Buddy key rules
+
+- **Grounded in Microsoft Learn.** Every question and lab is grounded in official Learn docs via MCP before any other source.
+- **Current terminology only.** Legacy names like "Azure AI Studio" and "Power Virtual Agents" are silently replaced with "Microsoft Foundry" and "Microsoft Copilot Studio." See the full rename table in [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
+- **Original content only.** The agent never recreates, paraphrases, or references real exam questions, braindumps, or leaked content.
+- **No contractions. No trick wording. Distractors must be real.**
+- **Answer randomization.** Correct answer position is distributed across A/B/C/D.
+- **Company randomization.** Scenarios draw from [`references/fictional-companies.md`](references/fictional-companies.md) — not always Contoso.
+- **Labs include cleanup.** Every lab ends with exact rollback or deletion steps.
+- **Microsoft style.** All content follows the Microsoft Writing Style Guide ([`references/style-guide.md`](references/style-guide.md)).
 
 ## Disclaimer
 

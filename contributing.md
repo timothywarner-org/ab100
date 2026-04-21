@@ -1,33 +1,94 @@
-# Contributing
+# Contributing to AB-100 Cert Buddy + O'Reilly Course Repo
 
-Thanks for helping improve the **Agentic AI Business Solutions Architect** course and AB-100 study materials.
-
-## Scope
-
-This repository is the instructor source of truth and learner reference for Tim Warner's O'Reilly Live Learning course. Contributions should support one of:
-
-- Course delivery — demos, exercises, teaching notes in [`src/hour1-plan/`](src/hour1-plan/) through [`src/hour4-security/`](src/hour4-security/)
-- Study reference — [`docs/course-plan.md`](docs/course-plan.md) and [`docs/exam-objectives.md`](docs/exam-objectives.md)
-- Repo hygiene — README, CLAUDE.md, contribution docs, tooling config
+Thank you for your interest in contributing. This repo serves two audiences: learners preparing for Microsoft exam **AB-100: Agentic AI Business Solutions Architect**, and attendees of Tim Warner's O'Reilly Live Learning course. Contributions of all kinds are welcome — whether you are fixing a typo, updating terminology, proposing a new skill, improving reference material, or filling in course scaffolding.
 
 ## How to contribute
 
-1. **Open an issue first** for anything more than a typo fix or broken link. Describe the learner or instructor impact.
-2. **Branch from `main`** with a short, descriptive name (e.g., `hour2-demo-update`).
-3. **Keep PRs small and focused.** One concern per PR.
-4. **Cite your sources.** When you add exam-objective content, link to the current Microsoft Learn documentation or the [official AB-100 exam page](https://learn.microsoft.com/credentials/certifications/exams/ab-100/).
+### Report issues
 
-## Content standards
+If you find something that is incorrect, outdated, or broken, please open a GitHub issue. Common examples include:
 
-- **Markdown lint** — files must pass [`.markdownlint.json`](.markdownlint.json) rules.
-- **Microsoft product names** — exact casing: *Microsoft 365 Copilot*, *Copilot Studio*, *Azure AI Foundry*, *Azure OpenAI*, *Dynamics 365*.
-- **Protocols** — **MCP** (Model Context Protocol) and **A2A** (Agent2Agent).
-- **Disclaimer** — this is an unofficial study guide. Never imply Microsoft endorsement.
-- **Cross-links** — when you move or rename a file, grep for the old path across `*.md` and update references.
+- **Outdated Microsoft terminology** — a retired product name that should use the current Microsoft name (for example, "Azure AI Studio" should be "Microsoft Foundry", "Power Virtual Agents" should be "Microsoft Copilot Studio").
+- **Incorrect architecture guidance** — a question rationale or lab step that does not match current Copilot Studio, Microsoft Foundry, Dynamics 365, or Power Platform behavior.
+- **Broken MCP configurations** — a server definition in `.vscode/mcp.json` that fails to start.
+- **Inaccurate references** — a Microsoft Learn URL that no longer resolves or points to the wrong topic.
+- **Drift from the AB-100 study guide** — if `references/ab100-objectives.md` falls out of sync with the [live study guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-100).
+
+When opening an issue, include enough detail to locate and reproduce the problem (file path, line number, expected vs. actual behavior).
+
+### Suggest new skills or prompt templates
+
+Have an idea for a new agent skill or prompt template? Open an issue describing:
+
+- What the skill or prompt would do.
+- Which AB-100 domain or subdomain it would cover.
+- How it would differ from the existing `ab100-item-creator`, `ab100-lab-creator`, and `ab100-study-planner` skills.
+
+### Improve reference documents
+
+The `references/` directory contains supporting material used by the agent:
+
+- `ab100-objectives.md` — AB-100 skills-measured reference, synced from the Microsoft Learn study guide.
+- `fictional-companies.md` — Microsoft fictional company names for scenarios.
+- `style-guide.md` — Microsoft Writing Style Guide key principles.
+
+If any of these documents are out of date or incomplete, submit a pull request with corrections.
+
+### Fill in course scaffolding
+
+Each hour's README (`src/hour1-plan/` through `src/hour4-security/`) has bracketed italic placeholders for learning objectives, demos, and exercises. Replace placeholders in place — do not create parallel files. Keep the existing section structure.
+
+### Fix documentation
+
+Improvements to the README, this file, `CLAUDE.md`, or any other documentation are always appreciated.
+
+## Contribution guidelines
+
+All contributions must follow these rules. These are the same rules the agent itself enforces.
+
+### Terminology
+
+Always use current Microsoft product names. Never use a retired or legacy name, even if it appears in user-facing text you are quoting. The full rename table lives in `.github/copilot-instructions.md`. Common renames include:
+
+| Retired / legacy name | Current name |
+| --- | --- |
+| Azure Active Directory (Azure AD) | Microsoft Entra ID |
+| Azure AD Conditional Access | Microsoft Entra Conditional Access |
+| Azure OpenAI Service (standalone, post-rebrand) | Azure OpenAI in Microsoft Foundry |
+| Azure AI Studio / Azure AI Foundry | Microsoft Foundry |
+| Azure AI Foundry Tools | Microsoft Foundry Tools |
+| Power Virtual Agents | Microsoft Copilot Studio |
+| Copilot for Microsoft 365 | Microsoft 365 Copilot |
+| Copilot for Sales / Copilot for Service | Microsoft 365 Copilot for Sales / Microsoft 365 Copilot for Service |
+| Dataverse for Teams | Microsoft Dataverse |
+
+If Microsoft Learn shows a different current name than what appears above, prefer the Learn name.
+
+### Writing style
+
+- **No contractions** in any generated content or instructions. Write "do not" instead of "don't," "cannot" instead of "can't," and so on.
+- **Plain ASCII only.** Do not use curly quotes, en dashes, em dashes, or other non-ASCII characters. Use straight quotes and double hyphens (`--`) instead.
+- **Microsoft style formatting.** Use **bold** for UI labels. Use sentence-style capitalization for headings and labels.
+- **Avoid negatives** unless required. When a negative word is necessary, **bold** and CAPITALIZE it (for example, "Which option does **NOT** support...").
+
+### Content integrity
+
+- **Questions must be original.** Do not copy, paraphrase, or reference real exam questions, braindumps, or leaked content. Every scenario and stem must be written from scratch.
+- **Distractors must be real.** Wrong answer choices must reference actual Microsoft services, agent types, Foundry tools, Copilot Studio node kinds, and Dynamics 365 features. Never invent fake services, connectors, or capabilities.
+- **Labs must include cleanup steps.** Every practice lab must end with steps that remove all resources, solutions, or environments created during the exercise.
+- **All claims must be groundable in Microsoft Learn.** If you cannot find a supporting reference on Microsoft Learn, do not include the claim.
+
+## File conventions
+
+- Skill names must match the `name` field in the skill's YAML frontmatter, not the folder name.
+- Skills are auto-discovered from `.github/skills/` folders. There is no `skills:` field in agent YAML frontmatter.
+- Prompt `agent:` fields must match the agent's `name` field. Current value: `ab100-cert-buddy-agent`.
+- MCP server IDs in tool lists must match IDs in `.vscode/mcp.json`. Current value: `ab100buddy-mslearn`.
 
 ## Review process
 
 - The maintainer reviews PRs in priority order: course-delivery blockers first, then exam-content updates, then hygiene.
+- CI (`.github/workflows/validate.yml`) runs terminology, ASCII, contraction, and link checks. Warnings do not block merge, but fix them when practical.
 - Expect review feedback within five business days during course-delivery windows, longer otherwise.
 
 ## Questions

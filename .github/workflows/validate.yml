@@ -1,0 +1,69 @@
+name: Content Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**.md"
+      - ".github/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for retired / legacy terminology
+        continue-on-error: true
+        run: |
+          echo "Checking for retired Microsoft product names..."
+          # Exclude copilot-instructions.md (contains the rename table) and CLAUDE.md (references the table)
+          RETIRED_TERMS='Azure AD[^C]|Azure Active Directory|Azure AD Connect[^[:space:]]|ADAL|Azure AD B2C|Azure AD B2B|Power Virtual Agents|Azure AI Studio|Dataverse for Teams|Copilot for Microsoft 365\b'
+          RESULTS=$(grep -rn --include="*.md" -E "$RETIRED_TERMS" \
+            --exclude="copilot-instructions.md" \
+            --exclude="CLAUDE.md" \
+            --exclude="CONTRIBUTING.md" \
+            --exclude="contributing.md" \
+            . || true)
+          if [ -n "$RESULTS" ]; then
+            echo "::warning::Retired terminology found:"
+            echo "$RESULTS"
+          else
+            echo "No retired terminology found."
+          fi
+
+      - name: Check for non-ASCII characters
+        continue-on-error: true
+        run: |
+          echo "Checking for curly quotes, em dashes, and en dashes..."
+          RESULTS=$(grep -rn --include="*.md" -P '[\x{2018}\x{2019}\x{201C}\x{201D}\x{2013}\x{2014}]' . || true)
+          if [ -n "$RESULTS" ]; then
+            echo "::warning::Non-ASCII characters found (curly quotes or dashes):"
+            echo "$RESULTS"
+          else
+            echo "No non-ASCII characters found."
+          fi
+
+      - name: Check for contractions
+        continue-on-error: true
+        run: |
+          echo "Checking for common contractions..."
+          CONTRACTIONS="don't|doesn't|won't|wouldn't|shouldn't|couldn't|isn't|aren't|wasn't|weren't|hasn't|haven't|hadn't|can't|it's|that's|there's|here's|what's|who's|let's|we're|they're|you're|I'm|we've|they've|you've|I've|we'll|they'll|you'll|I'll"
+          RESULTS=$(grep -rn --include="*.md" -iP "\b($CONTRACTIONS)\b" \
+            --exclude="CONTRIBUTING.md" \
+            --exclude="contributing.md" \
+            . || true)
+          if [ -n "$RESULTS" ]; then
+            echo "::warning::Contractions found:"
+            echo "$RESULTS"
+          else
+            echo "No contractions found."
+          fi
+
+      - name: Validate markdown links
+        continue-on-error: true
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: "yes"
+          config-file: ".github/workflows/mlc-config.json"
