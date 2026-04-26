@@ -3,7 +3,7 @@
 ## Purpose
 
 - Maintain a respectful, inclusive environment for all contributors supporting the **Agentic AI Business Solutions Architect** O'Reilly Live Learning course and AB-100 study materials.
-- Align collaboration with the learning outcomes captured in [README.md](README.md) and [docs/course-plan.md](docs/course-plan.md).
+- Align collaboration with the learning outcomes captured in [README.md](README.md) and [docs/course-plan-april-2026.md](docs/course-plan-april-2026.md).
 
 ## Expected behaviors
 

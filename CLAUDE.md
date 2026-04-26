@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repo has two complementary missions:
 
-1. **Live training scaffolding** -- companion material for Tim Warner's O'Reilly Live Learning course **Agentic AI Business Solutions Architect** (4 hours). Hour-by-hour content lives under `src/hour1-plan/` through `src/hour4-security/` and the authoritative plan is `docs/course-plan.md`.
+1. **Live training scaffolding** -- companion material for Tim Warner's O'Reilly Live Learning course **Agentic AI Business Solutions Architect** (4 hours). Hour-by-hour content lives under `src/hour1-plan/` through `src/hour4-security/` and the authoritative plan is `docs/course-plan-april-2026.md`.
 2. **AB-100 Cert Buddy** -- a GitHub Copilot agent that generates practice questions, hands-on labs, and personalized study plans for Microsoft exam **AB-100: Agentic AI Business Solutions Architect**. The agent, skills, prompts, and MCP server live under `.github/` and `.vscode/`.
 
 This is Tim Warner's instructor source of truth and learner reference material. There is no application code, no build system, no tests.
@@ -83,7 +83,7 @@ When exam facts conflict across files, this is the order of trust:
 1. `docs/ab100-exam-objectives.md` (verbatim Microsoft Learn sync, dated).
 2. `docs/microsoft-certification-policies.md` and `docs/pearson-vue-registration.md` for policy, registration, and support facts.
 3. `references/ab100-objectives.md` (short summary; rewrite if it drifts).
-4. `docs/course-plan.md` and hour READMEs (Tim's instructional framing -- may legitimately differ from Microsoft's split, see note on course structure above).
+4. `docs/course-plan-april-2026.md` and hour READMEs (Tim's instructional framing -- may legitimately differ from Microsoft's split, see note on course structure above).
 
 When Microsoft updates the study guide, re-sync `docs/ab100-exam-objectives.md` word for word and record the change in its change log. Other files that quote it must be updated in the same PR.
 
@@ -136,4 +136,4 @@ Preserve these when editing agent or skill content:
 
 Each hour's `README.md` has bracketed italic placeholders (`_Objective 1_`, `_Hook, context, agenda_`, etc.). When the user asks to populate an hour, replace the placeholders in-place -- do not create parallel files. Keep the section structure (Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources) unless the user explicitly changes it.
 
-`docs/course-plan.md` frames the 4-hour flow; `docs/ab100-exam-objectives.md` is canonical for exam facts. If an hour's content conflicts with the objectives doc, the objectives doc wins -- or re-sync it from Microsoft Learn and update the hour.
+`docs/course-plan-april-2026.md` frames the 4-hour flow; `docs/ab100-exam-objectives.md` is canonical for exam facts. If an hour's content conflicts with the objectives doc, the objectives doc wins -- or re-sync it from Microsoft Learn and update the hour.

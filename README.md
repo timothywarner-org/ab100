@@ -35,7 +35,7 @@ This repo has **two sides**:
 
 ## Prerequisites
 
-- _To be finalized — see [`docs/course-plan.md`](docs/course-plan.md)_
+- _To be finalized — see [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md)_
 
 ## Repository structure
 
@@ -137,7 +137,7 @@ Maps to AB-100 Domain 3 security & governance (~20–25%), plus exam readiness. 
 | 3:00 – 3:50 | Hour 4 — Security & Exam Mastery                          |
 | 3:50 – 4:00 | Wrap-up, resources, next steps                            |
 
-Full plan in [`docs/course-plan.md`](docs/course-plan.md).
+Full plan in [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md).
 
 ## Instructor
 

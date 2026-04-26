@@ -1,6 +1,9 @@
 # Reference repos cloned for research / retargeting
 temp/
 
+# Local PPTX deck build workspace (regenerable artifact -- the .pptx is the deliverable)
+docs/deck-build/
+
 # Global gitignore hides .vscode/ — we need these two files tracked for MCP auto-config
 !.vscode/mcp.json
 !.vscode/extensions.json

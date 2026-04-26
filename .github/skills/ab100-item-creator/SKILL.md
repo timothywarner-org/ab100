@@ -60,6 +60,23 @@ description: Generate AB-100 practice questions that feel like the real exam wit
 
 You MUST randomize which letter (A, B, C, or D) is the correct answer for each question. Do not default to any single letter position. Across a set of questions, distribute the correct answer roughly evenly among A, B, C, and D. Before finalizing each question, deliberately vary the correct answer position.
 
+### Batch balance rule
+
+When delivering a batch of 4 or more items in a single response, enforce explicit balance across the batch:
+
+- **4 to 7 items:** every letter (A, B, C, D) must be the correct answer at least once.
+- **8 to 11 items:** every letter must appear at least twice.
+- **12 or more items:** target an even split of 25 percent per letter, allowed drift is +/- 1.
+
+**Procedure before delivery:**
+
+1. Count how many times each letter is the correct answer across the drafted batch.
+2. If any letter is missing (in a 4+ batch) or under the floor (in an 8+ batch), pick one item where the correct answer falls in an over-represented letter and **rewrite the item** so that the correct answer moves to the under-represented letter. Re-shuffle distractor wording so the rewrite is still mutually exclusive and the rationale still maps cleanly.
+3. Re-count. Repeat until the batch is balanced.
+4. In the batch summary or final message, state the final A/B/C/D distribution (for example, "Answer position distribution: A=2, B=3, C=2, D=3").
+
+The goal is to remove the unconscious bias toward early letters that humans and LLMs share. Position must carry no signal.
+
 ## Fictional company randomization (non-negotiable)
 
 Use fictional company names from `references/fictional-companies.md` for scenario context. You MUST randomize the company selection -- do not default to Contoso for every scenario. Draw from the full list of 50+ companies including Contoso, Fabrikam, Tailwind Traders, Northwind Traders, Litware, A. Datum, Woodgrove Bank, Trey Research, Coho Vineyard, AdventureWorks, Wide World Importers, Blue Yonder Airlines, Fourth Coffee, Humongous Insurance, Alpine Ski House, WingTip Toys, and others.
@@ -70,7 +87,7 @@ Use fictional company names from `references/fictional-companies.md` for scenari
 2. Ground the intended correct behavior in Microsoft Learn using `microsoft_docs_search` first, then `microsoft_docs_fetch` if you need full page detail.
 3. If the item touches Copilot Studio YAML, Power Platform CLI, Microsoft Foundry SDK, or Dynamics 365 configuration specifics, invoke `microsoft_code_sample_search` to confirm syntax.
 4. Pick a random fictional company from `references/fictional-companies.md` and draft a workplace scenario stem that forces a real architect decision (build vs buy vs extend, agent type selection, ALM boundary, governance control, responsible AI mitigation).
-5. Randomly assign the correct answer to A, B, C, or D. Write 1 correct answer and 3 distractors based on common-but-wrong architecture assumptions.
+5. Randomly assign the correct answer to A, B, C, or D. Write 1 correct answer and 3 distractors based on common-but-wrong architecture assumptions. After the batch is drafted, apply the **batch balance rule** below before delivery.
 6. Run a mutual exclusivity check on answer choices.
 7. Run a terminology check: confirm every product name matches the current name (see rename table in copilot-instructions.md).
 8. Run a candidate clarity check: single skill measured, no trivia, no hidden requirements.
@@ -178,6 +195,7 @@ If multiple questions were requested, repeat this Phase 1 / Phase 2 cycle for ea
   - "All product names use current terminology (no retired or legacy names)."
   - "Each rationale entry is exactly 2 sentences."
   - "Correct answer position is randomized (not always A)."
+  - "Across a 4+ item batch, every letter A/B/C/D appears at least once; across an 8+ item batch, every letter appears at least twice."
   - "Fictional company is randomized (not always Contoso)."
 
 ---
