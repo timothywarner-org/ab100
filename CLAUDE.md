@@ -9,7 +9,21 @@ This repo has two complementary missions:
 1. **Live training scaffolding** -- companion material for Tim Warner's O'Reilly Live Learning course **Agentic AI Business Solutions Architect** (4 hours). Hour-by-hour content lives under `src/hour1-plan/` through `src/hour4-security/` and the authoritative plan is `docs/course-plan-april-2026.md`.
 2. **AB-100 Cert Buddy** -- a GitHub Copilot agent that generates practice questions, hands-on labs, and personalized study plans for Microsoft exam **AB-100: Agentic AI Business Solutions Architect**. The agent, skills, prompts, and MCP server live under `.github/` and `.vscode/`.
 
-This is Tim Warner's instructor source of truth and learner reference material. There is no application code, no build system, no tests.
+This is Tim Warner's instructor source of truth and learner reference material. There is no application code and no test suite. The only build pipeline is the slide deck (see "Slide deck build" below).
+
+## Slide deck build
+
+The course slide deck is generated from HTML source files via Node, not authored in PowerPoint:
+
+- Source: `docs/deck-build/slides/*.html` -- one HTML file per slide, ordered by filename. Slides use Tim's brand palette (`#1F2A56` navy, `#00B4D8` cyan, `#F4845F` orange) and a fixed `720pt x 405pt` 16:9 layout. Existing CSS classes (`.header`, `.tag`, `.box`, `.card`, `.foot`) define the look -- match them when adding slides.
+- Build: `cd docs/deck-build && node build.js`. Reads the `slides` array in `build.js` (slides are added to the deck in array order, NOT filename order) and writes `docs/ab100-course-deck.pptx`.
+- Sync: after every rebuild, also copy `docs/ab100-course-deck.pptx` over `docs/ab100-course-deck-april-2026.pptx`. The dated filename is the canonical artifact referenced from other docs; the undated one is just the build output.
+- Renderer constraint: `html2pptx.js` requires every text node be wrapped in `<p>`, `<h1>-<h6>`, `<ul>`, or `<ol>`. Bare text inside `<div>` or `<span>` fails the build with a validation error.
+- New slides: when adding a slide between existing ones, name it with a letter suffix (e.g. `05a-seg1-saas-first.html` between `05` and `06`) and add it to the `slides` array in `build.js` at the correct position. Do not renumber existing files.
+
+## Source decks (Microsoft AB-100T00)
+
+`docs/learning-paths/AB-100T00-ENU-PowerPoint-{00..12}.pptx` are Microsoft's official AB-100T00 trainer decks (one per learning-path module, plus 00 intro and 12 wrap). Treat them as RESEARCH INPUT ONLY -- copyright belongs to Microsoft. Extract concepts, decision frameworks, named patterns, and exam-relevant terminology, then synthesize into Tim-voiced material in our deck. Do not copy slide text or layouts. Footer attribution on derived slides reads "Concepts informed by Microsoft AB-100T00 official courseware".
 
 ## Course structure (4 hours)
 
@@ -58,11 +72,15 @@ ab100/
 │   └── workflows/{validate.yml,mlc-config.json}
 ├── .vscode/{mcp.json,extensions.json}
 ├── docs/
-│   ├── course-plan.md                      # Course plan (4-hour live training)
+│   ├── course-plan-april-2026.md           # Course plan (4-hour live training)
 │   ├── ab100-exam-objectives.md            # Verbatim Microsoft Learn skills-measured (canonical)
 │   ├── pearson-vue-registration.md         # Registration walkthrough + support escalation
 │   ├── microsoft-certification-policies.md # Candidate Agreement, retake, renewal, FAQs
-│   └── ab100-study-resources.md            # Curated public AB-100 content
+│   ├── ab100-study-resources.md            # Curated public AB-100 content
+│   ├── ab100-course-deck-april-2026.pptx   # Built slide deck (canonical artifact)
+│   ├── ab100-course-deck.pptx              # Build output -- copy over the april-2026 file
+│   ├── deck-build/                         # HTML slide sources + Node build (build.js, slides/, html2pptx.js)
+│   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (README + 11 module .md files)
 ├── references/
 │   ├── ab100-objectives.md              # Short summary (the docs/ version is canonical)
 │   ├── fictional-companies.md           # 50+ Microsoft fictional companies
@@ -84,6 +102,7 @@ When exam facts conflict across files, this is the order of trust:
 2. `docs/microsoft-certification-policies.md` and `docs/pearson-vue-registration.md` for policy, registration, and support facts.
 3. `references/ab100-objectives.md` (short summary; rewrite if it drifts).
 4. `docs/course-plan-april-2026.md` and hour READMEs (Tim's instructional framing -- may legitimately differ from Microsoft's split, see note on course structure above).
+5. `docs/learning-paths/architect-agentic-ai/` (local mirror of the Microsoft Learn path, treated as curriculum reference -- do NOT use to override exam objectives).
 
 When Microsoft updates the study guide, re-sync `docs/ab100-exam-objectives.md` word for word and record the change in its change log. Other files that quote it must be updated in the same PR.
 

@@ -70,6 +70,23 @@ See [`./ab100-exam-objectives.md`](./ab100-exam-objectives.md) for the canonical
 Microsoft Learn skills-measured list. The hour-by-hour mapping below shows where each
 bullet from that document is taught in the course.
 
+## Microsoft Learn path alignment
+
+This course is sequenced to align with the Microsoft Learn path **Architect AI solutions for
+business productivity**, mirrored locally at
+[`./learning-paths/architect-agentic-ai/README.md`](./learning-paths/architect-agentic-ai/README.md)
+and published at
+[https://learn.microsoft.com/training/paths/architect-agentic-ai-business-solutions/](https://learn.microsoft.com/training/paths/architect-agentic-ai-business-solutions/).
+The path's 11 modules cover the same AB-100 scope at a finer grain, so learners can drill in
+between live sessions to deepen any topic introduced during an hour.
+
+| Hour | Modules | Focus |
+| ---- | ------- | ----- |
+| 1 | [1. Introduction](./learning-paths/architect-agentic-ai/01-introduction-agentic-ai.md), [2. Analyze requirements](./learning-paths/architect-agentic-ai/02-analyze-requirements.md), [3. Design overall AI strategy](./learning-paths/architect-agentic-ai/03-design-overall-ai-strategy.md), [4. Evaluate costs and benefits](./learning-paths/architect-agentic-ai/04-evaluate-costs-benefits.md) | Plan AI-powered business solutions: requirements, strategy on the Cloud Adoption Framework, ROI and build-buy-extend. |
+| 2 | [5. Design AI agents](./learning-paths/architect-agentic-ai/05-design-ai-agents.md), [6. Design extensibility](./learning-paths/architect-agentic-ai/06-design-extensibility.md), [7. Orchestrate prebuilt agents](./learning-paths/architect-agentic-ai/07-orchestrate-prebuilt-agents.md) | Design AI-powered business solutions: agent typology, extensibility surfaces, and orchestration across Dynamics 365 and Microsoft 365 Copilot. |
+| 3 | [8. Monitor, analyze, tune](./learning-paths/architect-agentic-ai/08-monitor-analyze-tune.md), [9. Manage testing](./learning-paths/architect-agentic-ai/09-manage-testing.md), [10. Design ALM process](./learning-paths/architect-agentic-ai/10-design-alm-process.md) | Deploy AI-powered business solutions: operations, testing strategy, and ALM across data, agents, connectors, and custom models. |
+| 4 | [11. Responsible AI security and governance](./learning-paths/architect-agentic-ai/11-responsible-ai-governance.md) | Deploy AI-powered business solutions: responsible AI, security, governance, risk, and compliance. |
+
 ## Hour 1 -- Plan AI Solutions (Domain 1, 25-30%)
 
 **Reference:** [`../src/hour1-plan/`](../src/hour1-plan/)
@@ -97,6 +114,20 @@ bullet from that document is taught in the course.
 - **1.1 Analyze requirements** -- agents in task automation, data analytics, decision-making; grounding data quality (accuracy, relevance, timeliness, cleanliness, availability); organizing solution data for downstream AI systems.
 - **1.2 Design overall AI strategy** -- AI adoption process from the Cloud Adoption Framework for Azure; strategy for AI and agents in business solutions; multi-agent solutions across Microsoft 365 Copilot, Copilot Studio, and Microsoft Foundry; prebuilt agent use cases; rules and constraints for Copilot Studio, Microsoft Foundry, and Foundry Tools; generative AI and knowledge sources in Copilot Studio agents; build custom agents vs extend Microsoft 365 Copilot; when to build custom AI models; prompt library guidelines; small language model use cases; prompt engineering guidelines; Microsoft AI Center of Excellence elements; AI solutions across multiple Dynamics 365 apps.
 - **1.3 Costs and benefits** -- ROI criteria including TCO; ROI analysis for an AI-powered business process; build, buy, or extend analysis; model router routing requests to the most suitable model.
+
+### Microsoft Learn modules
+
+- [1. Introduction to agentic AI business solutions](./learning-paths/architect-agentic-ai/01-introduction-agentic-ai.md)
+  -- frames the architect role and the Microsoft AI service inventory before we dive into
+  requirements.
+- [2. Analyze requirements for AI-powered business solutions](./learning-paths/architect-agentic-ai/02-analyze-requirements.md)
+  -- expands the grounding-data scorecard with detailed checks for accuracy, relevance,
+  timeliness, cleanliness, and availability.
+- [3. Design overall AI strategy for business solutions](./learning-paths/architect-agentic-ai/03-design-overall-ai-strategy.md)
+  -- 19-unit deep dive into the Cloud Adoption Framework AI adoption process, prompt library
+  guidelines, small language model use cases, and the Microsoft AI Center of Excellence.
+- [4. Evaluate costs and benefits of AI solutions](./learning-paths/architect-agentic-ai/04-evaluate-costs-benefits.md)
+  -- step-by-step ROI and TCO worksheet plus model router routing logic for cost and performance.
 
 ### Demo
 
@@ -139,6 +170,19 @@ and the build-buy-extend justification.
 - **2.1 Design AI and agents for business solutions** -- Copilot business terms in Dynamics 365 customer experience and service; customizations of Copilot in those apps; connectors for Copilot in Dynamics 365 Sales; agents for Dynamics 365 Contact Center channels; task agents; autonomous agents; prompt-and-response agents; Foundry Tools selection; code-first generative pages and agent feed for apps; Copilot Studio topic design including fallback; data processing for AI models and grounding; AI components in a Power Apps canvas app; Microsoft Power Platform Well-Architected Framework for intelligent workloads; choosing standard NLP vs Azure conversational language understanding vs generative AI orchestration in Copilot Studio; agents and agent flows with Copilot Studio; prompt actions in Copilot Studio.
 - **2.2 Design extensibility** -- AI solutions with custom models in Microsoft Foundry; agents in Microsoft 365 Copilot; agent extensibility in Copilot Studio; agent extensibility with Model Context Protocol in Copilot Studio; agents that automate tasks with Computer Use in Copilot Studio; agent behaviors in Copilot Studio including reasoning and voice mode; optimizing solution design with agents in Microsoft 365 (Teams and SharePoint).
 - **2.3 Orchestrate prebuilt agents and apps** -- AI features in Dynamics 365 finance and supply chain; AI features in Dynamics 365 customer experience and service; Microsoft 365 agents for business scenarios; Microsoft 365 Copilot for Sales and Microsoft 365 Copilot for Service configuration; Microsoft Power Platform AI features including AI hub; finance and operations agent chats with additional knowledge sources; adding knowledge sources to in-app help and guidance for Dynamics 365 Finance or Dynamics 365 Supply Chain Management.
+
+### Microsoft Learn modules
+
+- [5. Design AI agents for business solutions](./learning-paths/architect-agentic-ai/05-design-ai-agents.md)
+  -- 21-unit deep dive on task, autonomous, and prompt-driven agents in Microsoft Copilot
+  Studio plus Dynamics 365 Customer Service, Sales, and Contact Center customizations.
+- [6. Design extensibility of AI solutions](./learning-paths/architect-agentic-ai/06-design-extensibility.md)
+  -- isolates the high-yield extensibility surfaces (custom Microsoft Foundry models, MCP,
+  Computer Use, reasoning, voice mode, Microsoft 365 Copilot in Microsoft Teams and SharePoint)
+  that the live demo can only touch briefly.
+- [7. Orchestrate configuration of prebuilt agents and apps](./learning-paths/architect-agentic-ai/07-orchestrate-prebuilt-agents.md)
+  -- Dynamics 365 Finance and Supply Chain, Customer Service, Microsoft 365 Copilot for Sales
+  and Service, and Microsoft Power Platform AI hub orchestration patterns at unit-level depth.
 
 ### Demo
 
@@ -183,6 +227,19 @@ sentences.
 - **3.2 Manage testing** -- test process and metrics for agents; validation criteria for custom AI models; Copilot prompt best-practice validation; end-to-end test scenarios across multiple Dynamics 365 apps; strategy for creating test cases by using Copilot.
 - **3.3 ALM process** -- ALM for data used in AI models and agents; ALM for Copilot Studio agents, connectors, and actions; ALM for Microsoft Foundry agents; ALM for custom AI models; ALM for AI in Dynamics 365 finance and supply chain; ALM for AI in Dynamics 365 customer experience and service.
 
+### Microsoft Learn modules
+
+- [8. Monitor, analyze, and tune AI agents](./learning-paths/architect-agentic-ai/08-monitor-analyze-tune.md)
+  -- builds out the monitoring tool inventory, backlog and feedback analysis, and telemetry
+  interpretation patterns that the demo only samples.
+- [9. Manage testing AI-powered business solutions](./learning-paths/architect-agentic-ai/09-manage-testing.md)
+  -- adds unit-level practice picking the right test metric, validation criteria for custom
+  AI models, and Copilot-assisted test case generation across multiple Dynamics 365 apps.
+- [10. Design ALM process for AI-powered business solutions](./learning-paths/architect-agentic-ai/10-design-alm-process.md)
+  -- one unit per ALM surface (data, Copilot Studio agents, connectors and actions, Microsoft
+  Foundry agents, custom models, Dynamics 365 Finance and Supply Chain, Dynamics 365 Customer
+  Experience and Service).
+
 ### Demo
 
 Move a solution-aware Copilot Studio agent from a development environment through test
@@ -223,6 +280,14 @@ test stages, and the monitoring KPIs you will track in production.
 - **3.4 Responsible AI, security, governance, risk management, and compliance** -- security for agents; governance for agents; model security; analysis of solution and AI vulnerabilities and mitigations including prompt manipulation; review for adherence to responsible AI principles; data residency and movement compliance validation; access controls on grounding data and model tuning; audit trails for changes to models and data.
 - **Exam mastery wrap** -- AB-100 audience profile and competencies, prerequisite certifications, scoring (700 / 1000), language availability, renewal cadence, registration and accommodations through Pearson VUE, the curated study path in `docs/microsoft-certification-policies.md`, `docs/pearson-vue-registration.md`, and `docs/ab100-study-resources.md`.
 
+### Microsoft Learn modules
+
+- [11. Design responsible AI security, governance, risk management, and compliance](./learning-paths/architect-agentic-ai/11-responsible-ai-governance.md)
+  -- expands the threat-model demo into 11 units covering security agents for Microsoft
+  clouds, governance models, model security, prompt-manipulation analysis, residency
+  validation, access controls on grounding data and tuning, and audit trails for changes to
+  models and data.
+
 ### Demo
 
 Threat-model a deployed Copilot Studio agent: walk identity and authentication, knowledge
@@ -240,6 +305,10 @@ evidence.
 ## Continuing study after the course
 
 - Canonical Microsoft objectives: [`./ab100-exam-objectives.md`](./ab100-exam-objectives.md).
+- Microsoft Learn path mirror:
+  [`./learning-paths/architect-agentic-ai/README.md`](./learning-paths/architect-agentic-ai/README.md)
+  -- Local mirror of the Microsoft Learn path with per-module summaries and AB-100 domain
+  mapping.
 - Curated AB-100 public study list: [`./ab100-study-resources.md`](./ab100-study-resources.md).
 - Microsoft certification policies (Candidate Agreement, retake, renewal):
   [`./microsoft-certification-policies.md`](./microsoft-certification-policies.md).

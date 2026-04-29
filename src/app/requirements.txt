@@ -1,0 +1,5 @@
+mcp>=1.2
+azure-ai-projects>=1.0
+azure-identity>=1.17
+uvicorn[standard]>=0.30
+starlette>=0.37

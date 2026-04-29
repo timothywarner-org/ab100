@@ -12,6 +12,64 @@
 > braindump and leaked-question sites are deliberately NOT linked -- see the
 > warning in the "Practice tests" section.
 
+## Quick reference
+
+The five highest-value links for a candidate. Every URL below was verified live
+on 2026-04-29.
+
+### a. Official AB-100 exam and certification pages
+
+- [Exam AB-100: Agentic AI Business Solutions Architect (exam page)](https://learn.microsoft.com/credentials/certifications/exams/ab-100) --
+  exam details, schedule button, sandbox, retake policy.
+- [Microsoft Certified: Agentic AI Business Solutions Architect (credential page)](https://learn.microsoft.com/credentials/certifications/agentic-ai-business-solutions-architect/) --
+  audience profile, 12-month renewal cadence, qualifying associate-level
+  prerequisites.
+- [Study guide for Exam AB-100 (canonical skills measured)](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-100) --
+  authoritative skills outline with domain weights. Short link:
+  <https://aka.ms/AB100-StudyGuide>.
+
+### b. Pearson VUE -- Microsoft support
+
+- [Pearson VUE customer service for Microsoft (scheduling, rescheduling, cancellation)](https://home.pearsonvue.com/microsoft/contact) --
+  the official support entry point for Microsoft exam appointments.
+- [Pearson VUE technical support (exam delivery issues)](https://support.pearsonvue.com/Selfhelp/s/?clientCode=MICROSOFT&language=en_US) --
+  use this for in-exam technical problems and online proctored exam failures.
+
+### c. Microsoft certification policies and FAQs
+
+- [Microsoft Credentials support (entry point)](https://aka.ms/credentialssupport) --
+  short link to the credentials support hub for name changes, item challenges,
+  accommodations, and all other certification issues.
+- [Frequently asked questions about Microsoft certification exams](https://learn.microsoft.com/credentials/certifications/frequently-asked-questions) --
+  general FAQ covering exam scheduling, scoring, and policies.
+- [Frequently asked questions about online proctored exams](https://learn.microsoft.com/credentials/support/frequently-asked-questions-about-online-proctored-exams) --
+  online proctored exam workstation, ID, and environment requirements.
+- [Frequently asked questions about certification renewal](https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification-faq) --
+  the free 12-month renewal assessment process.
+- [Microsoft certification exam policies (Candidate Agreement, retake, NDA)](https://learn.microsoft.com/credentials/certifications/certification-exam-policies) --
+  binding policies that govern every Microsoft exam attempt.
+- [Exam and Applied Skills retake policy](https://learn.microsoft.com/credentials/support/retake-policy) --
+  24-hour wait after first failure, 14-day wait between subsequent attempts,
+  five attempts per 12-month window.
+
+### d. MeasureUp -- official Microsoft-licensed practice test
+
+- [MeasureUp -- Microsoft Practice Test AB-100 (102 questions, certification + practice modes)](https://www.measureup.com/microsoft-ab-100-agentic-ai-business-solutions-architect-practice-test.html) --
+  the official Microsoft-licensed practice test with full rationales,
+  references, and a test-pass guarantee.
+- [MeasureUp Assessment (question-bank-only variant)](https://www.measureup.com/microsoft-ab-100-agentic-ai-business-solutions-architect-assessment.html) --
+  the assessment-only SKU for the same item bank.
+
+### e. AB-100 self-paced and instructor-led training from Microsoft
+
+- [Architect AI solutions for business productivity (Microsoft Learn path)](https://learn.microsoft.com/training/paths/architect-agentic-ai-business-solutions/) --
+  the free 11-module Microsoft Learn path that maps end to end to AB-100. Local
+  mirror with per-module summaries lives in
+  [`./learning-paths/architect-agentic-ai/`](./learning-paths/architect-agentic-ai/README.md).
+- [Course AB-100T00-A: Architecting agentic AI business solutions (instructor-led)](https://learn.microsoft.com/training/courses/ab-100t00) --
+  the 3-day, advanced, partner-delivered course for AB-100. Use the Microsoft
+  Learn course page to find an authorized Microsoft Learning Partner.
+
 ## Official Microsoft resources
 
 ### Exam and certification pages
@@ -51,6 +109,15 @@
   Microsoft Learning Partners.
 
 ### Microsoft Learn paths and modules (grouped by AB-100 domain)
+
+End-to-end AB-100 path (covers all three domains):
+
+- [Architect AI solutions for business productivity (Microsoft Learn path)](https://learn.microsoft.com/training/paths/architect-agentic-ai-business-solutions/) --
+  the closest first-party Microsoft Learn path mapped end-to-end to AB-100. Eleven
+  Advanced-level modules covering planning, design, costs, agent extensibility,
+  orchestration, monitoring, testing, ALM, and Responsible AI governance.
+  Local mirror with per-module summaries and AB-100 domain mapping is in
+  [`docs/learning-paths/architect-agentic-ai/`](./learning-paths/architect-agentic-ai/README.md).
 
 Plan (AB-100 Domain 1, 25--30%):
 
@@ -310,8 +377,9 @@ rationale.
   general Microsoft Learn discussion.
 - [Microsoft MVP Program community hub](https://techcommunity.microsoft.com/category/mvp) --
   MVPs frequently post AB-100 content here.
-- [Microsoft Q&A (Credentials)](https://learn.microsoft.com/answers/tags/414/certification) --
-  certification-tagged Q&A.
+- [Microsoft Credentials support](https://aka.ms/credentialssupport) --
+  official Microsoft entry point for certification questions, name changes,
+  exam appointment issues, item challenges, and accommodations.
 - As of 2026-04-21, no dedicated r/AzureCertification megathread exists for
   AB-100. Reddit search surfaces only generic Microsoft Learn certification
   page links rather than community discussion. This is a real gap.
@@ -397,8 +465,8 @@ above. These are the most commonly relevant for AB-100 candidates:
 
 As of 2026-04-21:
 
-- Microsoft has NOT published the free official practice assessment for
-  AB-100 at https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications.
+- Microsoft has NOT published the free official practice assessment for AB-100 at
+  <https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications>.
   Microsoft indicates it typically ships within 8 weeks after general
   availability. AB-100 reached GA in January 2026, so the assessment is
   overdue and may still appear.
@@ -443,6 +511,14 @@ Official Microsoft:
 - https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification
 - https://learn.microsoft.com/credentials/certifications/exam-scoring-reports
 - https://learn.microsoft.com/credentials/certifications/deals
+- https://learn.microsoft.com/credentials/certifications/certification-exam-policies
+- https://learn.microsoft.com/credentials/certifications/frequently-asked-questions
+- https://learn.microsoft.com/credentials/support/frequently-asked-questions-about-online-proctored-exams
+- https://learn.microsoft.com/credentials/certifications/renew-your-microsoft-certification-faq
+- https://learn.microsoft.com/credentials/support/retake-policy
+- https://aka.ms/credentialssupport
+- https://home.pearsonvue.com/microsoft/contact
+- https://support.pearsonvue.com/Selfhelp/s/?clientCode=MICROSOFT&language=en_US
 - https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-102
 - https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-103
 - https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-620

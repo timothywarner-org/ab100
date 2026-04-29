@@ -1,0 +1,36 @@
+<!--
+  AB-100 POC inbound policy for the foundry-mcp API.
+
+  Rate limit (60 req/min, instance-wide) and forward all traffic to the
+  aca-backend backend defined in apim.bicep. Body is not rewritten; MCP
+  JSON-RPC requests pass through untouched. The 120-second backend timeout
+  covers slow Foundry agent runs.
+
+  Note: APIM Consumption tier does not support rate-limit-by-key. The
+  per-key counter pattern is available on Basic v2 and higher; for class we
+  use the simpler instance-wide rate-limit, which is enough to demonstrate
+  the policy concept.
+-->
+<policies>
+    <inbound>
+        <base />
+        <rate-limit calls="60" renewal-period="60" />
+        <set-backend-service backend-id="aca-backend" />
+        <!--
+          The API path is "mcp" so callers hit https://{gw}/mcp. APIM strips
+          that path before forwarding, leaving only the operation urlTemplate
+          (which is "/"). The MCP server in ACA listens at /mcp, so we
+          rewrite the backend path to /mcp before the request leaves APIM.
+        -->
+        <rewrite-uri template="/mcp" />
+    </inbound>
+    <backend>
+        <forward-request timeout="120" />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>

@@ -35,7 +35,17 @@ This repo has **two sides**:
 
 ## Prerequisites
 
-- _To be finalized — see [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md)_
+- A Microsoft 365 tenant with Microsoft 365 Copilot and Microsoft Copilot Studio licensing
+  (a developer tenant or trial works for the demos).
+- A Microsoft Power Platform environment for agent authoring and a Microsoft Foundry
+  project for the model and Foundry Tools demos.
+- Working knowledge of one Microsoft business application stack -- Dynamics 365 customer
+  experience and service, Dynamics 365 finance and supply chain, or Microsoft Power
+  Platform -- consistent with the AB-100 prerequisite associate certifications.
+- Comfort with prompt engineering basics, ALM concepts, and baseline cloud security
+  vocabulary (identity, RBAC, data residency, audit logging).
+
+Full prerequisite detail: [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md).
 
 ## Repository structure
 
@@ -68,11 +78,18 @@ ab100/
 │   ├── mcp.json
 │   └── extensions.json
 │
-├── docs/                     # Course plan + reference notes
-│   └── course-plan.md
+├── docs/                                 # Course plan, exam reference, slide deck
+│   ├── course-plan-april-2026.md         # Canonical 4-hour plan
+│   ├── ab100-exam-objectives.md          # Verbatim Microsoft Learn skills measured
+│   ├── ab100-study-resources.md          # Curated public AB-100 content
+│   ├── microsoft-certification-policies.md
+│   ├── pearson-vue-registration.md
+│   ├── ab100-course-deck-april-2026.pptx # Built slide deck
+│   ├── deck-build/                       # HTML slide sources + Node build pipeline
+│   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (11 modules)
 │
 ├── references/               # Cert Buddy grounding data
-│   ├── ab100-objectives.md   # AB-100 skills measured (synced from Learn)
+│   ├── ab100-objectives.md   # Short summary (the docs/ version is canonical)
 │   ├── fictional-companies.md
 │   └── style-guide.md
 │
@@ -102,27 +119,30 @@ ab100/
 
 ### Hour 1: Plan AI Solutions
 
-**Theme:** _TBD before delivery_
-
-Maps to AB-100 Domain 1 (25–30%). See [`src/hour1-plan/`](src/hour1-plan/).
+Requirements analysis, AI strategy on the Cloud Adoption Framework, multi-agent platform
+selection across Microsoft 365 Copilot, Microsoft Copilot Studio, and Microsoft Foundry,
+plus ROI and build-buy-extend analysis. Maps to AB-100 Domain 1 (25–30%). See
+[`src/hour1-plan/`](src/hour1-plan/).
 
 ### Hour 2: Design AI Solutions
 
-**Theme:** _TBD before delivery_
-
-Maps to AB-100 Domain 2 (25–30%). See [`src/hour2-design/`](src/hour2-design/).
+Task, autonomous, and prompt-and-response agents, Microsoft Copilot Studio topics and
+agent flows, Microsoft Foundry Tools, MCP and A2A extensibility, Computer Use, voice
+mode, and Microsoft Power Platform Well-Architected Framework alignment for intelligent
+workloads. Maps to AB-100 Domain 2 (25–30%). See [`src/hour2-design/`](src/hour2-design/).
 
 ### Hour 3: Deploy AI Solutions
 
-**Theme:** _TBD before delivery_
-
-Maps to AB-100 Domain 3 implementation & operations (~20–25%). See [`src/hour3-deploy/`](src/hour3-deploy/).
+Monitoring and telemetry interpretation, agent testing strategy, and ALM for agents,
+connectors, custom models, and Dynamics 365 AI. Maps to AB-100 Domain 3 implementation &
+operations subset (~20–25%). See [`src/hour3-deploy/`](src/hour3-deploy/).
 
 ### Hour 4: Security & Exam Mastery
 
-**Theme:** _TBD before delivery_
-
-Maps to AB-100 Domain 3 security & governance (~20–25%), plus exam readiness. See [`src/hour4-security/`](src/hour4-security/).
+AI security, governance, prompt manipulation defense, data residency, audit trails,
+Responsible AI review, plus AB-100 exam logistics, item formats, and final-week study
+plan. Maps to AB-100 Domain 3 security & governance subset (~20–25%) plus exam
+readiness. See [`src/hour4-security/`](src/hour4-security/).
 
 ## Course schedule
 
@@ -138,6 +158,14 @@ Maps to AB-100 Domain 3 security & governance (~20–25%), plus exam readiness. 
 | 3:50 – 4:00 | Wrap-up, resources, next steps                            |
 
 Full plan in [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md).
+
+## Microsoft Learn path companion
+
+This course is sequenced to align with the Microsoft Learn path
+[Architect AI solutions for business productivity](https://learn.microsoft.com/training/paths/architect-agentic-ai-business-solutions/).
+The path's 11 modules are mirrored locally with per-module summaries and AB-100 domain
+mapping at [`docs/learning-paths/architect-agentic-ai/`](docs/learning-paths/architect-agentic-ai/README.md).
+Drill in between live sessions to deepen any topic introduced during an hour.
 
 ## Instructor
 
