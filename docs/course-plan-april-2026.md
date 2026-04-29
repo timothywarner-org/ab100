@@ -48,13 +48,13 @@ their own tenant, and a study plan to close their remaining gaps before exam day
 
 | Time        | Activity                                                     |
 | ----------- | ------------------------------------------------------------ |
-| 0:00 -- 0:50 | [Hour 1 -- Plan AI Solutions](../src/hour1-plan/)           |
+| 0:00 -- 0:50 | Hour 1 -- Plan AI Solutions (see "Hour 1" below)            |
 | 0:50 -- 1:00 | Q&A + Break                                                 |
-| 1:00 -- 1:50 | [Hour 2 -- Design AI Solutions](../src/hour2-design/)       |
+| 1:00 -- 1:50 | Hour 2 -- Design AI Solutions (see "Hour 2" below)          |
 | 1:50 -- 2:00 | Q&A + Break                                                 |
-| 2:00 -- 2:50 | [Hour 3 -- Deploy AI Solutions](../src/hour3-deploy/)       |
+| 2:00 -- 2:50 | Hour 3 -- Deploy AI Solutions (live demo: [`../src/`](../src/)) |
 | 2:50 -- 3:00 | Q&A + Break                                                 |
-| 3:00 -- 3:50 | [Hour 4 -- Security & Exam Mastery](../src/hour4-security/) |
+| 3:00 -- 3:50 | Hour 4 -- Security & Exam Mastery                           |
 | 3:50 -- 4:00 | Wrap-up, resources, next steps                              |
 
 ## Exam mapping
@@ -88,8 +88,6 @@ between live sessions to deepen any topic introduced during an hour.
 | 4 | [11. Responsible AI security and governance](./learning-paths/architect-agentic-ai/11-responsible-ai-governance.md) | Deploy AI-powered business solutions: responsible AI, security, governance, risk, and compliance. |
 
 ## Hour 1 -- Plan AI Solutions (Domain 1, 25-30%)
-
-**Reference:** [`../src/hour1-plan/`](../src/hour1-plan/)
 
 ### Learning objectives
 
@@ -138,13 +136,12 @@ that includes model router rationale.
 
 ### Exercise
 
-Take the lab scenario in `../src/hour1-plan/` and produce your own platform decision and
-ROI memo. Submit a single page that names the chosen platform, the grounding data plan,
-and the build-buy-extend justification.
+Take the planning canvas walked through in the demo and produce your own platform
+decision and ROI memo for an AI use case in your own tenant. Submit a single page that
+names the chosen platform, the grounding data plan, and the build-buy-extend
+justification.
 
 ## Hour 2 -- Design AI Solutions (Domain 2, 25-30%)
-
-**Reference:** [`../src/hour2-design/`](../src/hour2-design/)
 
 ### Learning objectives
 
@@ -195,12 +192,13 @@ a knowledge source. Then show how the same business outcome is delivered as a Mi
 
 Pick one Dynamics 365 family (customer experience and service, or finance and supply
 chain) and propose the prebuilt AI features and Microsoft 365 Copilot orchestrations that
-satisfy the user story in `../src/hour2-design/`. Justify each choice in one or two
-sentences.
+satisfy a user story you bring from your own organization. Justify each choice in one or
+two sentences.
 
 ## Hour 3 -- Deploy AI Solutions: operations, testing, ALM (Domain 3, ~20-25%)
 
-**Reference:** [`../src/hour3-deploy/`](../src/hour3-deploy/)
+**Live demo stack:** [`../src/`](../src/) -- Foundry agent + MCP + ACA + APIM. See
+[`../src/README.md`](../src/README.md) for the five-command demo and teardown.
 
 ### Learning objectives
 
@@ -249,13 +247,16 @@ calls inside the agent.
 
 ### Exercise
 
-For an existing agent in your tenant (or the lab agent in `../src/hour3-deploy/`),
-write the one-page ALM plan that names environments, source control, deployment tooling,
-test stages, and the monitoring KPIs you will track in production.
+For an existing agent in your tenant (or the demo Foundry agent that fronts the
+[`../src/`](../src/) POC stack), write the one-page ALM plan that names environments,
+source control, deployment tooling, test stages, and the monitoring KPIs you will track
+in production.
 
 ## Hour 4 -- Security, Governance, Responsible AI, and Exam Mastery (Domain 3 subset, ~20-25%)
 
-**Reference:** [`../src/hour4-security/`](../src/hour4-security/)
+**Bridge from Hour 3:** layer `validate-jwt`, named-values-from-Key-Vault,
+`azure-openai-token-limit`, and Defender for APIs onto the Hour 3 [`../src/`](../src/)
+stack -- zero structural change required.
 
 ### Learning objectives
 

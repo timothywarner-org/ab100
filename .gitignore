@@ -7,6 +7,9 @@ docs/deck-build/
 # Per-session Claude Code agent state (lock files, run history)
 .claude/
 
+# Microsoft Office lock files (created while a doc is open)
+~$*
+
 # Global gitignore hides .vscode/ — we need these two files tracked for MCP auto-config
 !.vscode/mcp.json
 !.vscode/extensions.json

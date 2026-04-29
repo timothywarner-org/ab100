@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository purpose
 
-This repo has two complementary missions:
+This repo has three complementary missions:
 
-1. **Live training scaffolding** -- companion material for Tim Warner's O'Reilly Live Learning course **Agentic AI Business Solutions Architect** (4 hours). Hour-by-hour content lives under `src/hour1-plan/` through `src/hour4-security/` and the authoritative plan is `docs/course-plan-april-2026.md`.
+1. **Live training scaffolding** -- companion material for Tim Warner's O'Reilly Live Learning course **Agentic AI Business Solutions Architect** (4 hours, delivered April 2026). The authoritative plan is `docs/course-plan-april-2026.md`.
 2. **AB-100 Cert Buddy** -- a GitHub Copilot agent that generates practice questions, hands-on labs, and personalized study plans for Microsoft exam **AB-100: Agentic AI Business Solutions Architect**. The agent, skills, prompts, and MCP server live under `.github/` and `.vscode/`.
+3. **Hour 3 Deploy POC stack** -- a working Foundry agent + MCP + ACA + APIM proof of concept under `src/`. Five bash scripts spin up the gateway-fronted MCP server that wraps an existing Foundry agent; one script tears it down. Used as the live demo for Hour 3 (Deploy) and as the structural base for the Hour 4 (Security) bridge.
 
-This is Tim Warner's instructor source of truth and learner reference material. There is no application code and no test suite. The only build pipeline is the slide deck (see "Slide deck build" below).
+This is Tim Warner's instructor source of truth and learner reference material. There is one minimal Python app (the MCP server in `src/app/`) and one Bicep stack; no test suite. Build pipelines: the slide deck (see "Slide deck build" below) and the POC deploy scripts (see "POC stack" below).
 
 ## Slide deck build
 
@@ -35,6 +36,27 @@ Microsoft publishes **three** AB-100 domains (Plan 25-30%, Design 25-30%, Deploy
 | 2    | Design AI Solutions      | Design AI-powered business solutions (25-30%)   |
 | 3    | Deploy AI Solutions      | Deploy -- implementation & operations (~20-25%) |
 | 4    | Security & Exam Mastery  | Deploy -- security & governance (~20-25%)       |
+
+## POC stack (`src/`)
+
+The Hour 3 demo is a working Foundry-agent-as-MCP-server stack on Azure. It is documented in `src/README.md` and consumes an existing Foundry project + agent (the POC does **not** provision Foundry).
+
+Components:
+
+- `src/app/main.py` -- Python MCP server (FastMCP, streamable-HTTP, stateless, JSON responses). Exposes one tool, `ask_agent`, that calls the Foundry agent via the Responses API with `agent_reference` (the agent's own model, instructions, tools, and reasoning effort apply server-side -- do **not** pass `model=` or `instructions=` here, that bypasses the agent and hits the bare deployment).
+- `src/app/Dockerfile` -- python:3.12-slim, port 8080, non-root user.
+- `src/infra/main.bicep` + `src/infra/modules/{identity,logs,acr,aca,apim}.bicep` -- modular Bicep that creates UAMI, Log Analytics, ACR (Basic), ACA env + Container App (1 replica, public ingress, port 8080), and APIM (Consumption tier).
+- `src/policies/apim-inbound.xml` -- APIM inbound policy (subscription key + instance-wide `rate-limit`; **not** `rate-limit-by-key`, which Consumption tier does not support).
+- `src/scripts/{00-login,01-build-and-push,02-deploy-infra,03-test,99-teardown}.sh` -- five-command demo plus teardown.
+
+Auth flow: ACA UAMI -> `DefaultAzureCredential` (via `AZURE_CLIENT_ID` env var) -> `Azure AI User` role on the Foundry project -> Responses API.
+
+Consumption-tier APIM constraints worth flagging in Hour 4:
+- `rate-limit-by-key` is unavailable -- use plain `rate-limit`.
+- The APIM developer portal is unavailable.
+- The first-class "MCP server" feature (auto-generated MCP facade) requires Basic v2 / Standard v2 / Premium; this POC runs its own MCP server in ACA instead.
+
+When editing `src/`, do not introduce CI/CD, Key Vault, VNet/private endpoints, autoscale, custom domains, or App Insights -- the README enumerates these as intentional exclusions for the classroom.
 
 ## Cert Buddy architecture
 
@@ -72,26 +94,32 @@ ab100/
 │   └── workflows/{validate.yml,mlc-config.json}
 ├── .vscode/{mcp.json,extensions.json}
 ├── docs/
-│   ├── course-plan-april-2026.md           # Course plan (4-hour live training)
-│   ├── ab100-exam-objectives.md            # Verbatim Microsoft Learn skills-measured (canonical)
-│   ├── pearson-vue-registration.md         # Registration walkthrough + support escalation
-│   ├── microsoft-certification-policies.md # Candidate Agreement, retake, renewal, FAQs
-│   ├── ab100-study-resources.md            # Curated public AB-100 content
-│   ├── ab100-course-deck-april-2026.pptx   # Built slide deck (canonical artifact)
-│   ├── ab100-course-deck.pptx              # Build output -- copy over the april-2026 file
-│   ├── deck-build/                         # HTML slide sources + Node build (build.js, slides/, html2pptx.js)
+│   ├── course-plan-april-2026.md             # Course plan (4-hour live training)
+│   ├── ab100-exam-objectives.md              # Verbatim Microsoft Learn skills-measured (canonical)
+│   ├── ab100-portals-and-products.md         # Architect-grade index of admin/maker portals (verified 2026-04-29)
+│   ├── ab100-metrics-dashboards-reports.md   # Highest-yield dashboards/metrics/reports (verified 2026-04-29)
+│   ├── pearson-vue-registration.md           # Registration walkthrough + support escalation
+│   ├── microsoft-certification-policies.md   # Candidate Agreement, retake, renewal, FAQs
+│   ├── ab100-study-resources.md              # Curated public AB-100 content
+│   ├── ab100-poc-architecture.html           # Standalone diagram for the POC stack
+│   ├── create-agent-30-days-checklist.pdf    # Handout (post-course follow-on)
+│   ├── ab100-course-deck-april-2026.pptx     # Built slide deck (canonical artifact)
+│   ├── ab100-course-deck.pptx                # Build output -- copy over the april-2026 file
+│   ├── deck-build/                           # HTML slide sources + Node build (build.js, slides/, html2pptx.js)
 │   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (README + 11 module .md files)
 ├── references/
 │   ├── ab100-objectives.md              # Short summary (the docs/ version is canonical)
 │   ├── fictional-companies.md           # 50+ Microsoft fictional companies
 │   └── style-guide.md                   # Microsoft Writing Style Guide key rules
 ├── images/cover.png                     # Resized for README display
-├── src/
-│   ├── hour1-plan/README.md
-│   ├── hour2-design/README.md
-│   ├── hour3-deploy/README.md
-│   └── hour4-security/README.md
-└── scripts/.gitkeep
+├── src/                                 # Hour 3 Deploy POC (Foundry agent + MCP + ACA + APIM)
+│   ├── README.md
+│   ├── .env.example
+│   ├── app/{main.py,Dockerfile,requirements.txt}
+│   ├── infra/{main.bicep,main.parameters.json,modules/*.bicep}
+│   ├── policies/apim-inbound.xml
+│   └── scripts/{00-login,01-build-and-push,02-deploy-infra,03-test,99-teardown}.sh
+└── scripts/.gitkeep                     # Repo-level helpers (currently empty)
 ```
 
 ### Source-of-truth hierarchy
@@ -112,7 +140,7 @@ When Microsoft updates the study guide, re-sync `docs/ab100-exam-objectives.md` 
 - **Terminology** -- the rename table in `.github/copilot-instructions.md` is authoritative. Legacy names ("Azure AI Studio", "Power Virtual Agents", "Azure AD") must be silently replaced with current names even when the user types them.
 - **Plain ASCII only** -- no curly quotes, no en/em dashes. Use `--` instead. Arrows: write `->` not a unicode arrow.
 - **No contractions** -- write "do not" not "don't".
-- **Hour folders** -- `hourN-theme/` (1-indexed). Each has a `README.md` with Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources sections.
+- **Hour content** -- there are no `hourN-theme/` folders any more; per-hour teaching framing lives in `docs/course-plan-april-2026.md` under "Hour N -- ..." sections (Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources). The Hour 3 demo materializes as the `src/` POC stack.
 - **Markdown lint** -- `.markdownlint.json` enforces line length 120, 2-space list indent, siblings-only MD024. Run `npx markdownlint-cli2 "**/*.md"` to validate.
 - **Answer randomization** -- correct answer position must be distributed across A/B/C/D, never always the same letter.
 - **Fictional company randomization** -- draw from the full 50+ list in `references/fictional-companies.md`, not always Contoso.
@@ -151,8 +179,8 @@ Preserve these when editing agent or skill content:
 - Labs prefer lowest-cost resources; include a cost warning when premium capacity, Foundry model charges, or non-trial Dynamics 365 apps are required.
 - Questions use two-phase delivery: Phase 1 (question only, wait for answer), Phase 2 (evaluation with rationale and references).
 
-## When filling in scaffolding
+## When editing course content
 
-Each hour's `README.md` has bracketed italic placeholders (`_Objective 1_`, `_Hook, context, agenda_`, etc.). When the user asks to populate an hour, replace the placeholders in-place -- do not create parallel files. Keep the section structure (Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources) unless the user explicitly changes it.
+`docs/course-plan-april-2026.md` is the single source of truth for the 4-hour flow. Each hour has Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources sections; edit these in place rather than creating parallel files.
 
-`docs/course-plan-april-2026.md` frames the 4-hour flow; `docs/ab100-exam-objectives.md` is canonical for exam facts. If an hour's content conflicts with the objectives doc, the objectives doc wins -- or re-sync it from Microsoft Learn and update the hour.
+If an hour's content conflicts with `docs/ab100-exam-objectives.md`, the objectives doc wins -- or re-sync it from Microsoft Learn and update the hour. The legacy `src/hour1-plan/` through `src/hour4-security/` folders no longer exist; do not recreate them. Hour 3's "demo" is the `src/` POC stack.
