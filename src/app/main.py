@@ -62,23 +62,12 @@ mcp = FastMCP(
 
 
 AGENT_NAME = os.environ.get("AGENT_NAME", "ab100-demo-agent")
-MODEL_DEPLOYMENT = os.environ.get("MODEL_DEPLOYMENT", "gpt-5.4-1")
-AGENT_INSTRUCTIONS = os.environ.get(
-    "AGENT_INSTRUCTIONS",
-    "You are a concise Azure architect. Answer in two sentences or fewer, "
-    "citing the specific Azure service and one tradeoff. Do not use markdown formatting.",
-)
 
-# Bind to the project's openai sub-path: .../openai/v1/responses. We invoke
-# the model deployment directly with the same instructions registered on the
-# Foundry agent, which keeps the demo single-call and cleanly compatible with
-# both Assistants-style agents (created via POST /assistants) and the new
-# hosted-agents surface. See:
-# - Responses API on Foundry projects:
-#   https://learn.microsoft.com/azure/foundry/agents/how-to/deploy-hosted-agent#invoke-the-agent
-# - Foundry deprecated Assistants threads/messages/runs in favor of Responses;
-#   probing showed POST .../openai/v1/responses returns 200, while
-#   POST .../openai/v1/threads returns 404.
+# Route Responses API calls through the Foundry managed/prompt agent. The
+# agent's own model, instructions, tools (e.g. web_search), and reasoning
+# effort are applied server-side; we do not pass model= or instructions= here
+# (those would bypass the agent and hit the bare deployment).
+# Source: https://learn.microsoft.com/azure/foundry/agents/how-to/migrate#migrate-runs-to-responses
 _openai_client = _project.get_openai_client()
 
 
@@ -86,16 +75,18 @@ _openai_client = _project.get_openai_client()
 def ask_agent(question: str) -> dict:
     """Ask the configured Foundry agent a single question and return its answer.
 
-    Single-shot Responses API call: pass the agent's instructions + the user's
-    question, get back output_text. No threads, no runs, no polling.
+    Single-shot Responses API call routed through the named Foundry agent via
+    agent_reference. The agent's instructions, tools, and reasoning settings
+    apply server-side. No threads, no runs, no polling.
     """
-    logger.info("ask_agent called: agent=%s model=%s question=%s",
-                AGENT_NAME, MODEL_DEPLOYMENT, question[:120])
+    logger.info("ask_agent called: agent=%s question=%s",
+                AGENT_NAME, question[:120])
 
     response = _openai_client.responses.create(
-        model=MODEL_DEPLOYMENT,
-        instructions=AGENT_INSTRUCTIONS,
         input=question,
+        extra_body={
+            "agent_reference": {"name": AGENT_NAME, "type": "agent_reference"},
+        },
     )
 
     answer_text = getattr(response, "output_text", "") or ""
@@ -113,7 +104,6 @@ def ask_agent(question: str) -> dict:
         "answer": answer_text,
         "agent_name": AGENT_NAME,
         "agent_id": AGENT_ID,
-        "model": MODEL_DEPLOYMENT,
         "response_id": getattr(response, "id", None),
     }
 

@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AB-100 POC Architecture Diagrams</title>
+  <style>
+    :root {
+      --navy: #1f2a56;
+      --cyan: #00b4d8;
+      --orange: #f4845f;
+      --ink: #172033;
+      --muted: #5c657a;
+      --paper: #fffaf4;
+      --panel: rgba(255, 255, 255, 0.92);
+      --line: rgba(31, 42, 86, 0.18);
+      --shadow: 0 24px 70px rgba(23, 32, 51, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(0, 180, 216, 0.22), transparent 30rem),
+        radial-gradient(circle at 88% 8%, rgba(244, 132, 95, 0.24), transparent 28rem),
+        linear-gradient(135deg, #f7efe4 0%, #edf7fa 48%, #fffaf4 100%);
+    }
+
+    header {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 28px 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border: 1px solid rgba(31, 42, 86, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--navy);
+      font: 700 12px/1.2 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      color: var(--navy);
+      font: 800 clamp(2.2rem, 5vw, 5.4rem)/0.95 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: -0.07em;
+    }
+
+    .lede {
+      max-width: 900px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.65;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--navy);
+      font: 700 0.9rem/1.2 "Trebuchet MS", Verdana, sans-serif;
+      text-decoration: none;
+    }
+
+    main {
+      display: grid;
+      gap: 28px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 28px 70px;
+    }
+
+    section {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      padding: 26px 30px 18px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(31, 42, 86, 0.08), rgba(0, 180, 216, 0.06)),
+        rgba(255, 255, 255, 0.62);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font: 800 clamp(1.35rem, 2.4vw, 2.2rem)/1 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: -0.035em;
+    }
+
+    .caption {
+      margin: 9px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .tag {
+      justify-self: start;
+      border-radius: 16px;
+      padding: 8px 11px;
+      background: var(--navy);
+      color: white;
+      font: 800 0.78rem/1 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .diagram-wrap {
+      padding: 28px;
+      background:
+        linear-gradient(rgba(31, 42, 86, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 42, 86, 0.035) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      min-width: 1120px;
+      padding: 18px;
+      border: 1px solid rgba(31, 42, 86, 0.14);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.8);
+      color: transparent;
+    }
+
+    .mermaid svg {
+      max-width: none !important;
+      min-width: 1080px;
+      height: auto !important;
+    }
+
+    .diagram-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 18px 28px 0;
+    }
+
+    .diagram-button {
+      border: 1px solid rgba(31, 42, 86, 0.22);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--navy);
+      color: white;
+      cursor: pointer;
+      font: 800 0.84rem/1 "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(31, 42, 86, 0.2);
+    }
+
+    .diagram-button.secondary {
+      background: white;
+      color: var(--navy);
+    }
+
+    .diagram-button:hover,
+    .diagram-button:focus-visible {
+      transform: translateY(-1px);
+      outline: 3px solid rgba(0, 180, 216, 0.28);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      background: rgba(10, 16, 32, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal.is-open {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(31, 42, 86, 0.18);
+    }
+
+    .modal-title {
+      margin: 0;
+      color: var(--navy);
+      font: 800 1.15rem/1.2 "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .modal-body {
+      overflow: auto;
+      padding: 26px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+        linear-gradient(rgba(31, 42, 86, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 42, 86, 0.05) 1px, transparent 1px);
+      background-size: auto, 24px 24px, 24px 24px;
+    }
+
+    .modal-stage {
+      display: inline-block;
+      min-width: 100%;
+      padding: 28px;
+      border-radius: 24px;
+      background: white;
+      box-shadow: var(--shadow);
+      transform-origin: top left;
+    }
+
+    .modal-stage svg {
+      max-width: none !important;
+      min-width: 1500px;
+      height: auto !important;
+    }
+
+    .scroll {
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 0 28px 28px;
+    }
+
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .note span {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px 40px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    code {
+      padding: 0.1em 0.28em;
+      border-radius: 6px;
+      background: rgba(31, 42, 86, 0.08);
+      font-family: Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 840px) {
+      header,
+      main,
+      footer {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        padding: 22px 20px 16px;
+      }
+
+      .diagram-wrap {
+        padding: 18px;
+      }
+
+      .diagram-toolbar {
+        padding: 16px 18px 0;
+      }
+
+      .notes {
+        grid-template-columns: 1fr;
+        padding: 0 18px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">AB-100 Hour 3 POC Visual Brief</div>
+    <h1>Foundry Agent Wrapped as MCP, Hosted on ACA, Governed by APIM</h1>
+    <p class="lede">
+      These Mermaid diagrams visualize the classroom POC in <code>src/</code> without changing the
+      solution. The story is intentionally simple: a public MCP endpoint, a gateway policy layer,
+      a serverless container runtime, managed identity authentication, and an existing Microsoft
+      Foundry project plus agent.
+    </p>
+    <div class="toolbar">
+      <a class="pill" href="https://learn.microsoft.com/azure/architecture/icons/" target="_blank" rel="noreferrer">Official Azure icon pack</a>
+      <a class="pill" href="https://mermaid.js.org/" target="_blank" rel="noreferrer">Mermaid renderer</a>
+      <span class="pill">No edits to src</span>
+      <span class="pill">Classroom-safe POC</span>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>1. Overall Application Architecture</h2>
+          <p class="caption">
+            The deployable Azure stack is APIM, ACA, ACR, Log Analytics, and a user-assigned
+            managed identity. The Foundry project and agent already exist outside the POC stack.
+          </p>
+        </div>
+        <div class="tag">Architecture</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+flowchart LR
+  classDef edge fill:#f4fbfd,stroke:#00b4d8,stroke-width:2px,color:#102033
+  classDef azure fill:#eef5ff,stroke:#1f2a56,stroke-width:2px,color:#102033
+  classDef app fill:#fff7ed,stroke:#f4845f,stroke-width:2px,color:#102033
+  classDef identity fill:#f1f8ef,stroke:#4f8a45,stroke-width:2px,color:#102033
+  classDef data fill:#f7f2ff,stroke:#7755aa,stroke-width:2px,color:#102033
+  classDef external fill:#ffffff,stroke:#5c657a,stroke-width:2px,stroke-dasharray: 5 4,color:#102033
+
+  Caller["Caller or MCP client<br/>curl, Invoke-WebRequest, agent runtime"]:::external
+
+  subgraph Azure["Azure resource group deployed by Bicep"]
+    APIM["Azure API Management<br/>Consumption tier<br/>API path: /mcp<br/>subscription required"]:::edge
+    Policy["Inbound policy<br/>rate-limit 60/min<br/>rewrite-uri /mcp<br/>forward timeout 120s"]:::edge
+    ACA["Azure Container Apps<br/>1 replica<br/>public HTTPS ingress<br/>target port 8080"]:::azure
+    MCP["Python FastMCP server<br/>POST /mcp<br/>GET /health<br/>tool: ask_agent"]:::app
+    ACR["Azure Container Registry<br/>Basic SKU<br/>admin disabled"]:::data
+    Logs["Log Analytics workspace<br/>ACA console and system logs"]:::data
+    UAMI["User-assigned managed identity<br/>AZURE_CLIENT_ID in container"]:::identity
+  end
+
+  subgraph Existing["Existing external dependency"]
+    Foundry["Microsoft Foundry project<br/>PROJECT_ENDPOINT"]:::external
+    Agent["Foundry agent metadata<br/>AGENT_ID and AGENT_NAME"]:::external
+    Model["Model deployment<br/>Responses API call"]:::external
+  end
+
+  Caller -->|"HTTPS POST /mcp<br/>Ocp-Apim-Subscription-Key"| APIM
+  APIM --> Policy
+  Policy -->|"backend https://aca-fqdn<br/>path rewritten to /mcp"| ACA
+  ACA --> MCP
+  MCP -->|"DefaultAzureCredential"| UAMI
+  UAMI -->|"Azure AI User role<br/>granted on Foundry project"| Foundry
+  MCP -->|"responses.create"| Foundry
+  Foundry --> Agent
+  Agent --> Model
+  ACA -. "pull image with AcrPull" .-> ACR
+  UAMI -. "AcrPull role assignment" .-> ACR
+  ACA -. "app logs" .-> Logs
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>Exam point</strong><span>Gateway-in-front-of-agent is the deployable pattern students should remember for MCP and agent endpoints.</span></div>
+        <div class="note"><strong>Security point</strong><span>No Foundry key is stored. The container uses managed identity for outbound access.</span></div>
+        <div class="note"><strong>Operations point</strong><span>Log Analytics is enough for the classroom demo; App Insights is intentionally excluded from this POC.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>2. Runtime Request and Response Flow</h2>
+          <p class="caption">
+            The app uses plain JSON-RPC over HTTP. APIM validates the subscription key, rewrites the
+            backend URI, and leaves the MCP body untouched.
+          </p>
+        </div>
+        <div class="tag">Runtime</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant Client as MCP client
+  participant APIM as API Management
+  participant Policy as APIM inbound policy
+  participant ACA as Container App
+  participant MCP as FastMCP server
+  participant MI as Managed identity
+  participant Foundry as Microsoft Foundry
+  participant Model as Model deployment
+
+  Client->>APIM: POST /mcp with JSON-RPC and subscription key
+  APIM->>Policy: Apply inbound policy
+  Policy->>Policy: Rate limit 60 calls per 60 seconds
+  Policy->>Policy: Rewrite backend path to /mcp
+  Policy->>ACA: Forward request with 120 second timeout
+  ACA->>MCP: Route POST /mcp
+  MCP->>MCP: Dispatch method tools/list or tools/call
+  alt tools/list
+    MCP-->>Client: JSON-RPC result with ask_agent tool metadata
+  else tools/call ask_agent
+    MCP->>MI: DefaultAzureCredential requests token
+    MI-->>MCP: Entra token for configured UAMI
+    MCP->>Foundry: responses.create with model, instructions, and user question
+    Foundry->>Model: Invoke model deployment
+    Model-->>Foundry: Generated answer
+    Foundry-->>MCP: Response object and output_text
+    MCP-->>Client: JSON-RPC result with answer, agent id, model, response id
+  end
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>Happy path</strong><span><code>tools/list</code> proves MCP reachability; <code>tools/call</code> proves Foundry reachability.</span></div>
+        <div class="note"><strong>Failure path</strong><span>Missing APIM key returns 401 before ACA is involved.</span></div>
+        <div class="note"><strong>Latency path</strong><span>Slow model or tool execution is bounded by APIM forward timeout.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>3. Deployment Lifecycle</h2>
+          <p class="caption">
+            Five commands make the class demo repeatable. The Foundry project remains a prerequisite,
+            not something provisioned by the POC.
+          </p>
+        </div>
+        <div class="tag">Demo Flow</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+flowchart TB
+  classDef cmd fill:#1f2a56,stroke:#1f2a56,color:#ffffff
+  classDef artifact fill:#fff7ed,stroke:#f4845f,stroke-width:2px,color:#102033
+  classDef resource fill:#eef5ff,stroke:#00b4d8,stroke-width:2px,color:#102033
+  classDef manual fill:#ffffff,stroke:#5c657a,stroke-width:2px,stroke-dasharray: 5 4,color:#102033
+
+  Env["src/.env<br/>subscription, resource group,<br/>Foundry endpoint, agent id"]:::artifact
+  Login["00-login.sh<br/>az login<br/>az account set"]:::cmd
+  Build["01-build-and-push.sh<br/>resource group<br/>ACR<br/>UAMI<br/>az acr build"]:::cmd
+  Image["Container image<br/>ab100-mcp:latest"]:::artifact
+  Deploy["02-deploy-infra.sh<br/>Bicep deployment"]:::cmd
+  Grant["Manual role grant<br/>Azure AI User on Foundry project"]:::manual
+  Test["03-test.sh<br/>health, 401 check,<br/>tools/list, tools/call"]:::cmd
+  Teardown["99-teardown.sh<br/>delete resource group<br/>remove cross-RG role assignment"]:::cmd
+
+  subgraph Bicep["Bicep modules"]
+    Identity["identity.bicep<br/>UAMI"]:::resource
+    Logs["logs.bicep<br/>Log Analytics"]:::resource
+    Acr["acr.bicep<br/>ACR + AcrPull"]:::resource
+    Aca["aca.bicep<br/>ACA env + app"]:::resource
+    Apim["apim.bicep<br/>APIM + API + subscription"]:::resource
+  end
+
+  Env --> Login --> Build --> Image --> Deploy
+  Deploy --> Identity
+  Deploy --> Logs
+  Deploy --> Acr
+  Deploy --> Aca
+  Deploy --> Apim
+  Identity --> Grant --> Test
+  Apim --> Test
+  Aca --> Test
+  Test --> Teardown
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>Stage-friendly</strong><span>Scripts are easier to narrate live than a full CI/CD workflow.</span></div>
+        <div class="note"><strong>Idempotent core</strong><span>Bicep owns the Azure resource graph; the role grant is separate because the Foundry project can live elsewhere.</span></div>
+        <div class="note"><strong>Clean exit</strong><span>Teardown removes the resource group and cleans up the cross-resource-group Foundry role assignment when values exist.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>4. Security and Trust Boundaries</h2>
+          <p class="caption">
+            This POC intentionally keeps network design simple, then uses the diagram to explain
+            what would be hardened for production.
+          </p>
+        </div>
+        <div class="tag">Security</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+flowchart LR
+  classDef public fill:#fff3f0,stroke:#f4845f,stroke-width:2px,color:#102033
+  classDef gateway fill:#eef8fb,stroke:#00b4d8,stroke-width:2px,color:#102033
+  classDef private fill:#f1f8ef,stroke:#4f8a45,stroke-width:2px,color:#102033
+  classDef harden fill:#ffffff,stroke:#5c657a,stroke-width:2px,stroke-dasharray: 5 4,color:#102033
+
+  subgraph Public["Public internet boundary"]
+    Client["Caller<br/>subscription key required for APIM"]:::public
+    DirectHealth["Direct ACA /health<br/>demo-only public probe"]:::public
+  end
+
+  subgraph Gateway["Gateway boundary"]
+    APIM["APIM Consumption<br/>subscription required"]:::gateway
+    Rate["rate-limit<br/>60 calls per minute<br/>instance-wide"]:::gateway
+    Rewrite["rewrite-uri<br/>/mcp"]:::gateway
+  end
+
+  subgraph Runtime["Runtime boundary"]
+    ACA["Container App<br/>public ingress<br/>single replica"]:::private
+    FastMCP["FastMCP app<br/>stateless HTTP<br/>JSON response"]:::private
+    UAMI["User-assigned managed identity<br/>no stored secret"]:::private
+  end
+
+  subgraph Production["Production hardening candidates"]
+    JWT["validate-jwt policy"]:::harden
+    KV["Named values from Key Vault"]:::harden
+    TokenLimit["azure-openai-token-limit"]:::harden
+    Defender["Defender for APIs"]:::harden
+    Private["Private networking<br/>private endpoints<br/>restricted ingress"]:::harden
+  end
+
+  Client --> APIM --> Rate --> Rewrite --> ACA --> FastMCP --> UAMI
+  DirectHealth -. bypasses APIM for demo health check .-> ACA
+  APIM -. add later .-> JWT
+  APIM -. add later .-> KV
+  APIM -. add later .-> TokenLimit
+  APIM -. add later .-> Defender
+  ACA -. add later .-> Private
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>What is real</strong><span>APIM subscription key, rate limit, managed identity, AcrPull, and Azure AI User role assignment.</span></div>
+        <div class="note"><strong>What is deferred</strong><span>JWT validation, Key Vault named values, token governance, Defender for APIs, and private networking.</span></div>
+        <div class="note"><strong>Why it matters</strong><span>AB-100 expects design tradeoffs, not only resource creation steps.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>5. Observability and Troubleshooting Path</h2>
+          <p class="caption">
+            The POC does not add Application Insights. Runtime health and logs are deliberately
+            limited to ACA probes, Container Apps logs, and Log Analytics.
+          </p>
+        </div>
+        <div class="tag">Operate</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+flowchart TB
+  classDef signal fill:#eef5ff,stroke:#00b4d8,stroke-width:2px,color:#102033
+  classDef symptom fill:#fff7ed,stroke:#f4845f,stroke-width:2px,color:#102033
+  classDef action fill:#f1f8ef,stroke:#4f8a45,stroke-width:2px,color:#102033
+
+  Health["GET /health<br/>ACA liveness and readiness probes"]:::signal
+  Logs["az containerapp logs tail<br/>ContainerAppConsoleLogs_CL"]:::signal
+  APIM401["401 from APIM"]:::symptom
+  Foundry403["403 from Foundry"]:::symptom
+  APIM504["504 from APIM"]:::symptom
+  Restart["Container restart loop"]:::symptom
+  CredError["DefaultAzureCredential error"]:::symptom
+
+  Key["Check Ocp-Apim-Subscription-Key"]:::action
+  Role["Grant Azure AI User to UAMI<br/>on Foundry project"]:::action
+  Timeout["Raise forward-request timeout<br/>or reduce agent latency"]:::action
+  Probe["Verify PORT 8080 and /health"]:::action
+  ClientId["Verify AZURE_CLIENT_ID env var<br/>and UAMI assignment"]:::action
+
+  Health --> Restart --> Probe
+  Logs --> Foundry403 --> Role
+  Logs --> CredError --> ClientId
+  APIM401 --> Key
+  APIM504 --> Timeout
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>Class demo query</strong><span>Use <code>ContainerAppConsoleLogs_CL</code> as the simple KQL anchor.</span></div>
+        <div class="note"><strong>Most common issue</strong><span>The UAMI lacks the Azure AI User role on the existing Foundry project.</span></div>
+        <div class="note"><strong>Boundary clue</strong><span>401 means gateway problem; 403 from Foundry means identity or role problem.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>6. AB-100 Teaching Map</h2>
+          <p class="caption">
+            Use this map to connect the POC to the exam blueprint during the live event.
+          </p>
+        </div>
+        <div class="tag">Exam Map</div>
+      </div>
+      <div class="diagram-wrap scroll">
+        <pre class="mermaid">
+flowchart LR
+  classDef domain fill:#1f2a56,stroke:#1f2a56,color:#ffffff
+  classDef evidence fill:#ffffff,stroke:#00b4d8,stroke-width:2px,color:#102033
+  classDef bridge fill:#fff7ed,stroke:#f4845f,stroke-width:2px,color:#102033
+
+  D31["3.1 Analyze, monitor, tune"]:::domain
+  D32["3.2 Manage testing"]:::domain
+  D33["3.3 Design ALM process"]:::domain
+  D34["3.4 Security and governance"]:::domain
+
+  E31["Log Analytics<br/>health probes<br/>container logs<br/>APIM response codes"]:::evidence
+  E32["Smoke tests<br/>401 negative test<br/>tools/list<br/>tools/call"]:::evidence
+  E33["Bicep modules<br/>parameterized deploy<br/>container image<br/>repeatable teardown"]:::evidence
+  E34["APIM policy<br/>managed identity<br/>least privilege roles<br/>hardening backlog"]:::evidence
+
+  Bridge["Instructor message<br/>This is not a production reference architecture.<br/>It is a compact exam-aligned deployment pattern."]:::bridge
+
+  D31 --> E31 --> Bridge
+  D32 --> E32 --> Bridge
+  D33 --> E33 --> Bridge
+  D34 --> E34 --> Bridge
+        </pre>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>What students see</strong><span>One POC demonstrates monitoring, testing, ALM, and security tradeoffs in under 15 minutes.</span></div>
+        <div class="note"><strong>What exam asks</strong><span>Which process, metric, tool, or control fits a business-agent scenario.</span></div>
+        <div class="note"><strong>What to avoid</strong><span>Do not overclaim production readiness; call out the intentional exclusions.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Official Azure architecture icons are available from Microsoft Learn at
+      <a href="https://learn.microsoft.com/azure/architecture/icons/" target="_blank" rel="noreferrer">Download Azure icons to use in architecture diagrams and documentation</a>.
+      This HTML file links to that official pack rather than embedding Microsoft SVG assets directly into Mermaid,
+      because Mermaid renders service diagrams more reliably with native nodes and classes.
+    </p>
+  </footer>
+
+  <div class="modal" id="diagram-modal" aria-hidden="true">
+    <div class="modal-head">
+      <p class="modal-title" id="diagram-modal-title">Diagram</p>
+      <div class="toolbar" style="margin-top: 0;">
+        <button class="diagram-button secondary" type="button" id="diagram-modal-tab">Open Full Page</button>
+        <button class="diagram-button" type="button" id="diagram-modal-close">Close</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-stage" id="diagram-modal-stage"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    (function () {
+      const mermaidConfig = {
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        flowchart: {
+          curve: "basis",
+          htmlLabels: true,
+          padding: 18
+        },
+        sequence: {
+          mirrorActors: false,
+          showSequenceNumbers: true
+        },
+        themeVariables: {
+          fontFamily: "Trebuchet MS, Verdana, sans-serif",
+          fontSize: "20px",
+          primaryColor: "#eef5ff",
+          primaryTextColor: "#172033",
+          primaryBorderColor: "#1f2a56",
+          lineColor: "#1f2a56",
+          secondaryColor: "#fff7ed",
+          tertiaryColor: "#f4fbfd",
+          noteBkgColor: "#fff7ed",
+          noteTextColor: "#172033",
+          actorBkg: "#eef5ff",
+          actorBorder: "#1f2a56",
+          actorTextColor: "#172033",
+          signalColor: "#1f2a56",
+          signalTextColor: "#172033"
+        }
+      };
+
+      let diagrams = [];
+      let activeDiagram = null;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        diagrams = Array.from(document.querySelectorAll("pre.mermaid")).map(function (node, index) {
+          const section = node.closest("section");
+          const heading = section ? section.querySelector("h2") : null;
+          const title = heading ? heading.textContent.trim() : "Diagram " + (index + 1);
+          const source = node.textContent.trim();
+          node.dataset.diagramIndex = String(index);
+          return { index, node, section, title, source };
+        });
+
+        if (!window.mermaid) {
+          showRenderError("Mermaid did not load. Check internet access to jsDelivr.");
+          return;
+        }
+
+        window.mermaid.initialize(mermaidConfig);
+
+        const renderResult = window.mermaid.run
+          ? window.mermaid.run({ nodes: diagrams.map(function (item) { return item.node; }) })
+          : Promise.resolve(window.mermaid.init(undefined, diagrams.map(function (item) { return item.node; })));
+
+        Promise.resolve(renderResult)
+          .then(function () {
+            diagrams.forEach(function (item) {
+              item.node.style.color = "";
+            });
+            addToolbars();
+            wireModal();
+          })
+          .catch(function (error) {
+            console.error(error);
+            showRenderError("Mermaid render failed. Open the browser console for the exact parse error.");
+          });
+      });
+
+      function addToolbars() {
+        diagrams.forEach(function (item) {
+          if (!item.section || item.section.querySelector(".diagram-toolbar")) return;
+          const toolbar = document.createElement("div");
+          toolbar.className = "diagram-toolbar";
+          toolbar.innerHTML =
+            '<button class="diagram-button" type="button" data-expand="' + item.index + '">Expand Full Screen</button>' +
+            '<button class="diagram-button secondary" type="button" data-open-tab="' + item.index + '">Open Full Page</button>';
+          item.section.querySelector(".section-head").after(toolbar);
+        });
+      }
+
+      function showRenderError(message) {
+        document.querySelectorAll(".diagram-wrap").forEach(function (wrap) {
+          const error = document.createElement("div");
+          error.style.cssText = "margin:16px;padding:16px;border:2px solid #f4845f;border-radius:14px;background:#fff7ed;color:#1f2a56;font:700 16px Trebuchet MS,Verdana,sans-serif;";
+          error.textContent = message;
+          wrap.prepend(error);
+        });
+      }
+
+      function openFullPage(item) {
+        const escapedTitle = escapeHtml(item.title);
+        const escapedSource = escapeHtml(item.source);
+        const doc = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapedTitle}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 28px;
+      color: #172033;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background: #fffaf4;
+    }
+    h1 {
+      margin: 0 0 18px;
+      color: #1f2a56;
+      font-size: 28px;
+    }
+    .frame {
+      overflow: auto;
+      padding: 24px;
+      border: 1px solid rgba(31, 42, 86, 0.18);
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 20px 60px rgba(23, 32, 51, 0.16);
+    }
+    .mermaid {
+      min-width: 1600px;
+    }
+    .mermaid svg {
+      max-width: none !important;
+      min-width: 1600px;
+      height: auto !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>${escapedTitle}</h1>
+  <div class="frame"><pre class="mermaid">${escapedSource}</pre></div>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"><\/script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      flowchart: { curve: "basis", htmlLabels: true, padding: 26 },
+      sequence: { mirrorActors: false, showSequenceNumbers: true },
+      themeVariables: {
+        fontFamily: "Trebuchet MS, Verdana, sans-serif",
+        fontSize: "22px",
+        primaryColor: "#eef5ff",
+        primaryTextColor: "#172033",
+        primaryBorderColor: "#1f2a56",
+        lineColor: "#1f2a56",
+        secondaryColor: "#fff7ed",
+        tertiaryColor: "#f4fbfd",
+        actorBkg: "#eef5ff",
+        actorBorder: "#1f2a56",
+        actorTextColor: "#172033",
+        signalColor: "#1f2a56",
+        signalTextColor: "#172033"
+      }
+    });
+    mermaid.run
+      ? mermaid.run({ nodes: [document.querySelector(".mermaid")] })
+      : mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+  <\/script>
+</body>
+</html>`;
+        const blob = new Blob([doc], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank", "noopener,noreferrer");
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      }
+
+      function escapeHtml(value) {
+        return value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function wireModal() {
+        const modal = document.getElementById("diagram-modal");
+        const modalTitle = document.getElementById("diagram-modal-title");
+        const modalStage = document.getElementById("diagram-modal-stage");
+        const closeModal = document.getElementById("diagram-modal-close");
+        const modalTab = document.getElementById("diagram-modal-tab");
+
+        function openModal(item) {
+          activeDiagram = item;
+          modalTitle.textContent = item.title;
+          modalStage.innerHTML = "";
+          const svg = item.node.querySelector("svg");
+          if (svg) modalStage.appendChild(svg.cloneNode(true));
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        }
+
+        function hideModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          modalStage.innerHTML = "";
+          activeDiagram = null;
+        }
+
+        document.addEventListener("click", function (event) {
+          const expand = event.target.closest("[data-expand]");
+          const openTab = event.target.closest("[data-open-tab]");
+          if (expand) {
+            const item = diagrams[Number(expand.dataset.expand)];
+            if (item) openModal(item);
+          }
+          if (openTab) {
+            const item = diagrams[Number(openTab.dataset.openTab)];
+            if (item) openFullPage(item);
+          }
+        });
+
+        closeModal.addEventListener("click", hideModal);
+        modalTab.addEventListener("click", function () {
+          if (activeDiagram) openFullPage(activeDiagram);
+        });
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) hideModal();
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) hideModal();
+        });
+      }
+    }());
+  </script>
+</body>
+</html>
