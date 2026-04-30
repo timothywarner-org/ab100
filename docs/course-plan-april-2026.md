@@ -315,5 +315,5 @@ evidence.
   [`./microsoft-certification-policies.md`](./microsoft-certification-policies.md).
 - Pearson VUE registration walkthrough and support escalation:
   [`./pearson-vue-registration.md`](./pearson-vue-registration.md).
-- Practice with the AB-100 Cert Buddy in this repo: `/ab100-practice-question`,
-  `/ab100-practice-lab`, and `/ab100-study-planner`.
+- Practice with the AB-100 Cert Buddy in this repo: `/ab100-quiz`,
+  `/ab100-lab`, and `/ab100-plan`.

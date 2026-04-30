@@ -66,7 +66,7 @@ The **ab100-cert-buddy-agent** (`.github/agents/`) orchestrates three auto-disco
 - **ab100-lab-creator** -- 15-25 minute self-validating labs across four categories: `agent-authoring`, `design-walkthrough`, `alm`, `responsible-ai-governance`. Validation gates after each step; mandatory cleanup.
 - **ab100-study-planner** -- Personalized study plans based on confidence self-assessment across the three AB-100 domains. Optionally drills into 10 subdomains for finer targeting.
 
-Three prompt templates (`.github/prompts/`) provide slash-command entry points: `/ab100-practice-question`, `/ab100-practice-lab`, `/ab100-study-planner`.
+Three prompt templates (`.github/prompts/`) provide slash-command entry points: `/ab100-quiz`, `/ab100-lab`, `/ab100-plan`.
 
 All content is grounded via a single MCP server: **ab100buddy-mslearn** (`https://learn.microsoft.com/api/mcp`, free, no API key) providing `microsoft_docs_search`, `microsoft_docs_fetch`, and `microsoft_code_sample_search`.
 
@@ -107,10 +107,6 @@ ab100/
 │   ├── ab100-course-deck.pptx                # Build output -- copy over the april-2026 file
 │   ├── deck-build/                           # HTML slide sources + Node build (build.js, slides/, html2pptx.js)
 │   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (README + 11 module .md files)
-├── references/
-│   ├── ab100-objectives.md              # Short summary (the docs/ version is canonical)
-│   ├── fictional-companies.md           # 50+ Microsoft fictional companies
-│   └── style-guide.md                   # Microsoft Writing Style Guide key rules
 ├── images/cover.png                     # Resized for README display
 ├── src/                                 # Hour 3 Deploy POC (Foundry agent + MCP + ACA + APIM)
 │   ├── README.md
@@ -128,9 +124,8 @@ When exam facts conflict across files, this is the order of trust:
 
 1. `docs/ab100-exam-objectives.md` (verbatim Microsoft Learn sync, dated).
 2. `docs/microsoft-certification-policies.md` and `docs/pearson-vue-registration.md` for policy, registration, and support facts.
-3. `references/ab100-objectives.md` (short summary; rewrite if it drifts).
-4. `docs/course-plan-april-2026.md` and hour READMEs (Tim's instructional framing -- may legitimately differ from Microsoft's split, see note on course structure above).
-5. `docs/learning-paths/architect-agentic-ai/` (local mirror of the Microsoft Learn path, treated as curriculum reference -- do NOT use to override exam objectives).
+3. `docs/course-plan-april-2026.md` and hour READMEs (Tim's instructional framing -- may legitimately differ from Microsoft's split, see note on course structure above).
+4. `docs/learning-paths/architect-agentic-ai/` (local mirror of the Microsoft Learn path, treated as curriculum reference -- do NOT use to override exam objectives).
 
 When Microsoft updates the study guide, re-sync `docs/ab100-exam-objectives.md` word for word and record the change in its change log. Other files that quote it must be updated in the same PR.
 
@@ -143,7 +138,7 @@ When Microsoft updates the study guide, re-sync `docs/ab100-exam-objectives.md` 
 - **Hour content** -- there are no `hourN-theme/` folders any more; per-hour teaching framing lives in `docs/course-plan-april-2026.md` under "Hour N -- ..." sections (Learning objectives -> Teaching flow -> Demo -> Exercise -> Resources). The Hour 3 demo materializes as the `src/` POC stack.
 - **Markdown lint** -- `.markdownlint.json` enforces line length 120, 2-space list indent, siblings-only MD024. Run `npx markdownlint-cli2 "**/*.md"` to validate.
 - **Answer randomization** -- correct answer position must be distributed across A/B/C/D, never always the same letter.
-- **Fictional company randomization** -- draw from the full 50+ list in `references/fictional-companies.md`, not always Contoso.
+- **Fictional company randomization** -- draw from the WWL-approved fictional company list embedded directly in `.github/agents/ab100-cert-buddy-agent.agent.md` and the per-skill `SKILL.md` files. Always use the entire company name on every mention (write *Litware, Inc.*, not *Litware*). Do not default to Contoso, Ltd.
 - **Rationale depth** -- exactly 2 sentences per choice (why correct/incorrect + context).
 - **Distractors must be real** -- reference actual Microsoft services, agent types, Foundry tools, Copilot Studio node kinds. Never invent fake ones.
 - **Labs must include cleanup** -- every lab ends with resource/solution/environment deletion steps.
@@ -175,7 +170,7 @@ Self-check before you commit Markdown: `grep -nP '[\x{2018}\x{2019}\x{201C}\x{20
 Preserve these when editing agent or skill content:
 
 - Labs default to **Copilot Studio YAML** for authoring, **Power Platform CLI** for ALM, and **Microsoft Foundry Portal** for Foundry-specific work.
-- Agent picks a domain from `references/ab100-objectives.md` (weighted by exam percentage) when none is specified.
+- Agent picks a domain from `docs/ab100-exam-objectives.md` (canonical, weighted by exam percentage) when none is specified.
 - Labs prefer lowest-cost resources; include a cost warning when premium capacity, Foundry model charges, or non-trial Dynamics 365 apps are required.
 - Questions use two-phase delivery: Phase 1 (question only, wait for answer), Phase 2 (evaluation with rationale and references).
 

@@ -9,11 +9,10 @@
 
 - Agent definition: `.github/agents/ab100-cert-buddy-agent.agent.md`
 - Skills: `.github/skills/*/SKILL.md`
-- Prompts: `.github/prompts/ab100-practice-question.prompt.md`, `.github/prompts/ab100-practice-lab.prompt.md`, `.github/prompts/ab100-study-planner.prompt.md`
+- Prompts: `.github/prompts/ab100-quiz.prompt.md`, `.github/prompts/ab100-lab.prompt.md`, `.github/prompts/ab100-plan.prompt.md`
 - MCP servers (workspace only): `.vscode/mcp.json`
-- Microsoft Writing Style Guide: `references/style-guide.md`
-- Fictional companies: `references/fictional-companies.md`
-- AB-100 objectives: `references/ab100-objectives.md`
+- AB-100 objectives (canonical, verbatim Microsoft Learn sync): `docs/ab100-exam-objectives.md`
+- Style and naming rules: embedded directly in the agent and skill files (Microsoft Worldwide Learning Exam Writing Style Guide for items, Microsoft Writing Style Guide for prose).
 
 ## Skill and agent conventions
 
@@ -48,7 +47,7 @@ When generating practice questions, the correct answer MUST be randomized across
 
 ## Fictional company randomization (non-negotiable)
 
-Use fictional company names from `references/fictional-companies.md` for scenario context. Randomize the company selection across the full list of 50+ companies. Do not default to Contoso for every scenario.
+Use only WWL-approved fictional company names (the full list with approved URLs is embedded in `.github/agents/ab100-cert-buddy-agent.agent.md` and in the `ab100-item-creator` and `ab100-lab-creator` skills). Always use the entire company name on every mention (write *Litware, Inc.*, not *Litware*). Randomize across the full list. Do not default to Contoso, Ltd. for every scenario.
 
 ## Terminology (non-negotiable)
 
@@ -87,6 +86,7 @@ This rule applies to all question-generation skills and prompts in this workspac
 ## Authoring guidance
 
 - Keep instructions and outputs in plain ASCII (avoid curly quotes and en dashes). Use `--` instead.
-- Prefer Microsoft style UI labels and instruction wording per `references/style-guide.md`.
-- No contractions; avoid negatives unless required.
-- Follow the Microsoft Writing Style Guide rules in `references/style-guide.md` for all generated content.
+- Follow the **Microsoft Worldwide Learning Exam Writing Style Guide** (WWL) for exam items: scenario-first stems beginning with *What* or *Which* + **should**; no banned auxiliaries (*can, must, might, do, would, may*) in the question sentence; no contractions; no negatives unless **CAP**+**bold**; no specific determiners (*all, none, only, always, never*); no indefinite qualifiers (*few, many, multiple, several, some, usually*); parallel and mutually exclusive choices.
+- Follow the **Microsoft Writing Style Guide** (MWSG) for lab prose, study plans, and other prose where WWL is silent.
+- Where the two guides conflict in exam items, WWL wins. Two MWSG conventions overridden by WWL: no contractions; key names in all uppercase (TAB, ENTER, CTRL+ALT+DELETE).
+- Full WWL rule sets, approved fictional company list, approved city list, and resource-naming patterns (Server1, Computer1, App1, Subnet1, Site1, *the user*, User1/User2) live inside `.github/agents/ab100-cert-buddy-agent.agent.md` and the per-skill `SKILL.md` files. Read those for authoritative guidance.

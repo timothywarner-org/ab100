@@ -32,7 +32,7 @@ The following should be reported through regular GitHub Issues rather than the s
 - Feature requests or suggestions for new content.
 - Outdated Microsoft terminology or product name changes.
 - General documentation improvements.
-- Drift between `references/ab100-objectives.md` and the live Microsoft Learn study guide.
+- Drift between `docs/ab100-exam-objectives.md` and the live Microsoft Learn study guide.
 
 ## Responsible disclosure
 

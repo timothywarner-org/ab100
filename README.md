@@ -69,9 +69,9 @@ ab100/
 │   │   ├── ab100-lab-creator/SKILL.md
 │   │   └── ab100-study-planner/SKILL.md
 │   ├── prompts/
-│   │   ├── ab100-practice-question.prompt.md
-│   │   ├── ab100-practice-lab.prompt.md
-│   │   └── ab100-study-planner.prompt.md
+│   │   ├── ab100-quiz.prompt.md
+│   │   ├── ab100-lab.prompt.md
+│   │   └── ab100-plan.prompt.md
 │   ├── copilot-instructions.md
 │   └── workflows/validate.yml
 │
@@ -91,11 +91,6 @@ ab100/
 │   ├── ab100-course-deck-april-2026.pptx   # Built slide deck (canonical artifact)
 │   ├── deck-build/                         # HTML slide sources + Node build pipeline
 │   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (11 modules)
-│
-├── references/               # Cert Buddy grounding data
-│   ├── ab100-objectives.md   # Short summary (the docs/ version is canonical)
-│   ├── fictional-companies.md
-│   └── style-guide.md
 │
 ├── images/cover.png          # Course cover image
 └── src/                      # Hour 3 Deploy POC -- Foundry agent + MCP + ACA + APIM
@@ -219,9 +214,9 @@ No API keys, Node.js, or Python are required. The Microsoft Learn MCP server is 
    Or use the slash commands. Type `/` in Copilot Chat:
 
    ```text
-   /ab100-practice-question
-   /ab100-practice-lab
-   /ab100-study-planner
+   /ab100-quiz
+   /ab100-lab
+   /ab100-plan
    ```
 
 ### Cert Buddy skills
@@ -245,9 +240,9 @@ No API keys, Node.js, or Python are required. The Microsoft Learn MCP server is 
 - **Original content only.** The agent never recreates, paraphrases, or references real exam questions, braindumps, or leaked content.
 - **No contractions. No trick wording. Distractors must be real.**
 - **Answer randomization.** Correct answer position is distributed across A/B/C/D.
-- **Company randomization.** Scenarios draw from [`references/fictional-companies.md`](references/fictional-companies.md) -- not always Contoso.
+- **Company randomization.** Scenarios draw from the WWL-approved Fictitious Names List embedded directly in the agent and skill files -- always the entire company name, never just *Contoso*.
 - **Labs include cleanup.** Every lab ends with exact rollback or deletion steps.
-- **Microsoft style.** All content follows the Microsoft Writing Style Guide ([`references/style-guide.md`](references/style-guide.md)).
+- **Microsoft style.** Items follow the Microsoft Worldwide Learning Exam Writing Style Guide; prose follows the Microsoft Writing Style Guide. Both rule sets are inlined into the agent and skill files.
 
 ## Disclaimer
 

@@ -12,7 +12,7 @@ If you find something that is incorrect, outdated, or broken, please open a GitH
 - **Incorrect architecture guidance** — a question rationale or lab step that does not match current Copilot Studio, Microsoft Foundry, Dynamics 365, or Power Platform behavior.
 - **Broken MCP configurations** — a server definition in `.vscode/mcp.json` that fails to start.
 - **Inaccurate references** — a Microsoft Learn URL that no longer resolves or points to the wrong topic.
-- **Drift from the AB-100 study guide** — if `references/ab100-objectives.md` falls out of sync with the [live study guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-100).
+- **Drift from the AB-100 study guide** — if `docs/ab100-exam-objectives.md` falls out of sync with the [live study guide](https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-100).
 
 When opening an issue, include enough detail to locate and reproduce the problem (file path, line number, expected vs. actual behavior).
 
@@ -24,13 +24,12 @@ Have an idea for a new agent skill or prompt template? Open an issue describing:
 - Which AB-100 domain or subdomain it would cover.
 - How it would differ from the existing `ab100-item-creator`, `ab100-lab-creator`, and `ab100-study-planner` skills.
 
-### Improve reference documents
+### Improve canonical references
 
-The `references/` directory contains supporting material used by the agent:
+Authoritative AB-100 facts live in two places:
 
-- `ab100-objectives.md` — AB-100 skills-measured reference, synced from the Microsoft Learn study guide.
-- `fictional-companies.md` — Microsoft fictional company names for scenarios.
-- `style-guide.md` — Microsoft Writing Style Guide key principles.
+- `docs/ab100-exam-objectives.md` — verbatim sync from the Microsoft Learn study guide.
+- The agent and skill files themselves (`.github/agents/ab100-cert-buddy-agent.agent.md`, `.github/skills/*/SKILL.md`) — embedded WWL exam-writing rules, MWSG prose rules, the WWL-approved fictional company list, the WWL-approved city list, resource-naming conventions, and the retired-to-current product rename table.
 
 If any of these documents are out of date or incomplete, submit a pull request with corrections.
 

@@ -11,7 +11,7 @@ description: Generates a personalized AB-100 study plan based on the user's self
 
 **Required sources:**
 
-- `references/ab100-objectives.md` (AB-100 skills measured, synced from Microsoft Learn study guide)
+- `docs/ab100-exam-objectives.md` (canonical AB-100 skills measured, synced verbatim from the Microsoft Learn study guide)
 - Microsoft Learn (access via the **Microsoft Learn MCP server** using `microsoft_docs_search` for current Learn module URLs)
 - Use `microsoft_docs_fetch` to verify Learn module links are current and active
 
@@ -55,10 +55,10 @@ description: Generates a personalized AB-100 study plan based on the user's self
    - For each area, provide:
      - Estimated study hours (weak: 10-14 hours, moderate: 5-7 hours, strong: 2-3 hours).
      - Two to three specific Microsoft Learn module links (grounded via Microsoft Learn MCP server; do not invent URLs).
-     - Key objectives to focus on (from `references/ab100-objectives.md`).
+     - Key objectives to focus on (from `docs/ab100-exam-objectives.md`).
    - Include a total estimated hours range at the bottom.
 
-5. **Call out prerequisite gaps.** AB-100 requires at least one qualifying associate-level certification (see `references/ab100-objectives.md`). If the user mentions they lack any prerequisite, recommend the quickest path (typically AI-102 for engineers, PL-400 or PL-600 for Power Platform professionals, or MB-910 + MB-920 study paths for Dynamics 365 paths) before scheduling AB-100.
+5. **Call out prerequisite gaps.** AB-100 requires at least one qualifying associate-level certification (the full prerequisite list is in `docs/ab100-exam-objectives.md` and on the Microsoft Learn certification page). If the user mentions they lack any prerequisite, recommend the quickest path (typically AI-102 for engineers, PL-400 or PL-600 for Power Platform professionals, or MB-910 + MB-920 study paths for Dynamics 365 paths) before scheduling AB-100.
 
 6. **Offer to start practicing.** After presenting the plan, ask: "Would you like to start with practice questions or a hands-on lab on **[first recommended topic]**?"
 
@@ -91,17 +91,21 @@ description: Generates a personalized AB-100 study plan based on the user's self
 
 **Total estimated study time:** XX-XX hours
 
-**Prerequisite check:** AB-100 requires one of the qualifying associate-level certifications listed in `references/ab100-objectives.md`. Confirmed? (yes / no / not sure)
+**Prerequisite check:** AB-100 requires one of the qualifying associate-level certifications listed in `docs/ab100-exam-objectives.md`. Confirmed? (yes / no / not sure)
 
 Ready to start? I can generate practice questions or a hands-on lab on **[first recommended topic]**.
 ```
 
+## Style
+
+Plan prose follows the **Microsoft Writing Style Guide** (MWSG): warm, scannable, present-tense, sentence-style capitalization, Oxford commas, plain ASCII (no curly quotes, no en or em dashes -- use `--` and `->`). Override one MWSG convention: **no contractions** (the same rule the **Microsoft Worldwide Learning Exam Writing Style Guide** applies to exam items). When a plan mentions a fictional company in an example, draw from the WWL-approved list and use the full company name (a few common picks: A. Datum Corporation, Adventure Works Cycles, Blue Yonder Airlines, Contoso, Ltd., Fabrikam, Inc., Litware, Inc., Northwind Traders, Tailspin Toys, Wide World Importers, Woodgrove Bank). Always use current Microsoft product names; never use retired or legacy names.
+
 ## Guardrails
 
-- Do not skip any of the three domains. Even "strong" areas should appear in the plan with a light review recommendation.
+- Do not skip any of the three domains. Even strong areas appear in the plan with a light review recommendation.
 - Do not invent Microsoft Learn module URLs. Use the Microsoft Learn MCP server (`microsoft_docs_search`) to find real, current module links.
-- Treat "unknown" confidence the same as "weak."
-- Always use current Microsoft product names. See the rename table in `.github/copilot-instructions.md`.
+- Treat unknown confidence the same as weak.
+- Always use current Microsoft product names (the `ab100-cert-buddy-agent` agent and the `ab100-item-creator` skill carry the full retired-to-current rename table; never use *Azure AD*, *Power Virtual Agents*, *Azure AI Studio*, *Dataverse for Teams*, or other legacy names).
 - No contractions.
 - AB-100 is an expert-level exam with prerequisites. Always surface the prerequisite reminder in the final plan.
 

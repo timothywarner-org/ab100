@@ -11,7 +11,7 @@ This guide walks through the end-to-end flow, the rules that apply once you are
 booked, and who to contact when something goes wrong.
 
 For the authoritative study objectives and prerequisite list, see
-[references/ab100-objectives.md](../references/ab100-objectives.md) and the
+[docs/ab100-exam-objectives.md](./ab100-exam-objectives.md) and the
 [AB-100 certification page](https://learn.microsoft.com/credentials/certifications/agentic-ai-business-solutions-architect/).
 
 ---
