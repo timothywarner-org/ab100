@@ -111,8 +111,10 @@ ab100/
 
 2. **Read the course plan:** [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md) -- per-hour learning objectives, teaching flow, demos, exercises, and Microsoft Learn module mapping.
 3. **Open the slide deck:** [`docs/ab100-course-deck-april-2026.pptx`](docs/ab100-course-deck-april-2026.pptx).
-4. **Run the Hour 3 POC:** [`src/README.md`](src/README.md) -- five bash scripts spin up Foundry agent + MCP + ACA + APIM in your subscription.
-5. **Use the Cert Buddy:** open the repo in VS Code and invoke `@ab100-cert-buddy-agent` in Copilot Chat.
+4. **Bookmark the links:** [`REFERENCES.md`](REFERENCES.md) -- verified canonical links for the exam,
+   registration, policy, free training, and practice tests.
+5. **Run the Hour 3 POC:** [`src/README.md`](src/README.md) -- five bash scripts spin up Foundry agent + MCP + ACA + APIM in your subscription.
+6. **Use the Cert Buddy:** open the repo in VS Code and invoke `@ab100-cert-buddy-agent` in Copilot Chat.
 
 ## Hour summaries
 
