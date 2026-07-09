@@ -18,7 +18,7 @@ The course slide deck is generated from HTML source files via Node, not authored
 
 - Source: `docs/deck-build/slides/*.html` -- one HTML file per slide, ordered by filename. Slides use Tim's brand palette (`#1F2A56` navy, `#00B4D8` cyan, `#F4845F` orange) and a fixed `720pt x 405pt` 16:9 layout. Existing CSS classes (`.header`, `.tag`, `.box`, `.card`, `.foot`) define the look -- match them when adding slides.
 - Build: `cd docs/deck-build && node build.js`. Reads the `slides` array in `build.js` (slides are added to the deck in array order, NOT filename order) and writes `docs/ab100-course-deck.pptx`.
-- Sync: after every rebuild, also copy `docs/ab100-course-deck.pptx` over `docs/ab100-course-deck-april-2026.pptx`. The dated filename is the canonical artifact referenced from other docs; the undated one is just the build output.
+- Sync: after every rebuild, also copy `docs/ab100-course-deck.pptx` over `docs/ab100-course-deck-july-2026.pptx`. The dated filename is the canonical artifact referenced from other docs; the undated one is just the build output.
 - Renderer constraint: `html2pptx.js` requires every text node be wrapped in `<p>`, `<h1>-<h6>`, `<ul>`, or `<ol>`. Bare text inside `<div>` or `<span>` fails the build with a validation error.
 - New slides: when adding a slide between existing ones, name it with a letter suffix (e.g. `05a-seg1-saas-first.html` between `05` and `06`) and add it to the `slides` array in `build.js` at the correct position. Do not renumber existing files.
 
@@ -103,8 +103,8 @@ ab100/
 │   ├── ab100-study-resources.md              # Curated public AB-100 content
 │   ├── ab100-poc-architecture.html           # Standalone diagram for the POC stack
 │   ├── create-agent-30-days-checklist.pdf    # Handout (post-course follow-on)
-│   ├── ab100-course-deck-april-2026.pptx     # Built slide deck (canonical artifact)
-│   ├── ab100-course-deck.pptx                # Build output -- copy over the april-2026 file
+│   ├── ab100-course-deck-july-2026.pptx      # Built slide deck (canonical artifact)
+│   ├── ab100-course-deck.pptx                # Build output -- copy over the july-2026 file
 │   ├── deck-build/                           # HTML slide sources + Node build (build.js, slides/, html2pptx.js)
 │   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (README + 11 module .md files)
 ├── images/cover.png                     # Resized for README display

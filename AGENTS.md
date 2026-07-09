@@ -75,7 +75,7 @@ The course deck is generated from HTML source:
 - Build script: `docs/deck-build/build.js`.
 - Build command: run from `docs/deck-build` with `node build.js`.
 - Build output: `docs/ab100-course-deck.pptx`.
-- Canonical dated artifact: `docs/ab100-course-deck-april-2026.pptx`.
+- Canonical dated artifact: `docs/ab100-course-deck-july-2026.pptx`.
 
 After rebuilding, copy the undated build output over the dated file.
 

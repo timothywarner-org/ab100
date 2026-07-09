@@ -21,7 +21,7 @@ Design, deploy, and govern multi-agent AI business solutions across the Microsof
 
 This repo has **three sides**:
 
-1. **Live training plan** -- the canonical 4-hour plan and per-hour breakdowns in [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md), plus the built slide deck in `docs/ab100-course-deck-april-2026.pptx`.
+1. **Live training plan** -- the canonical 4-hour plan and per-hour breakdowns in [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md), plus the built slide deck in `docs/ab100-course-deck-july-2026.pptx`.
 2. **Hour 3 Deploy POC** -- a working Foundry agent + MCP + ACA + APIM stack in [`src/`](src/). Five bash scripts spin it up, one tears it down. See [`src/README.md`](src/README.md).
 3. **AB-100 Cert Buddy** -- a GitHub Copilot agent in [`.github/`](.github/) that generates exam-realistic practice questions, short architect-grade labs, and personalized study plans, all grounded in **Microsoft Learn** via MCP. Open the repo in VS Code and invoke `@ab100-cert-buddy-agent` in Copilot Chat. See the [Cert Buddy quick start](#ab-100-cert-buddy) below.
 
@@ -88,7 +88,7 @@ ab100/
 │   ├── microsoft-certification-policies.md
 │   ├── pearson-vue-registration.md
 │   ├── ab100-poc-architecture.html         # Standalone POC architecture diagram
-│   ├── ab100-course-deck-april-2026.pptx   # Built slide deck (canonical artifact)
+│   ├── ab100-course-deck-july-2026.pptx    # Built slide deck (canonical artifact)
 │   ├── deck-build/                         # HTML slide sources + Node build pipeline
 │   └── learning-paths/architect-agentic-ai/  # Local mirror of MS Learn path (11 modules)
 │
@@ -110,7 +110,7 @@ ab100/
    ```
 
 2. **Read the course plan:** [`docs/course-plan-april-2026.md`](docs/course-plan-april-2026.md) -- per-hour learning objectives, teaching flow, demos, exercises, and Microsoft Learn module mapping.
-3. **Open the slide deck:** [`docs/ab100-course-deck-april-2026.pptx`](docs/ab100-course-deck-april-2026.pptx).
+3. **Open the slide deck:** [`docs/ab100-course-deck-july-2026.pptx`](docs/ab100-course-deck-july-2026.pptx).
 4. **Bookmark the links:** [`REFERENCES.md`](REFERENCES.md) -- verified canonical links for the exam,
    registration, policy, free training, and practice tests.
 5. **Run the Hour 3 POC:** [`src/README.md`](src/README.md) -- five bash scripts spin up Foundry agent + MCP + ACA + APIM in your subscription.

@@ -1,7 +1,7 @@
 # AB-100 Exam Objectives -- Agentic AI Business Solutions Architect
 
 > Source of truth: Microsoft Learn study guide for Exam AB-100.
-> Last synced: 2026-04-21
+> Last synced: 2026-07-09 (skills measured as of 2026-07-22)
 
 This document is the canonical, verbatim snapshot of the Microsoft Learn skills-measured
 list for Exam AB-100. It is generated from the official study guide and certification pages
@@ -23,7 +23,7 @@ at the bottom.
 | Renewal frequency | 12 months (free online assessment on Microsoft Learn) |
 | Passing score | 700 / 1000 |
 | Languages at launch | English (other languages approximately eight weeks after the English version is updated) |
-| Prerequisite | At least one qualifying associate-level certification (see Prerequisites section) |
+| Prerequisite | At least one of 14 qualifying associate-level certifications (see Prerequisites section) |
 | Practice assessment | Not currently available; typically published within eight weeks of GA |
 
 Microsoft does not publish an official exam length, question count, item format list, or
@@ -205,6 +205,8 @@ To become Microsoft Certified: Agentic AI Business Solutions Architect, you must
 least one of the following associate-level prerequisite certifications before AB-100
 credits toward the certification:
 
+- Microsoft Certified: AI Agent Builder Associate
+- Microsoft Certified: Azure AI Apps and Agents Developer Associate (beta)
 - Microsoft Certified: Dynamics 365 Business Central Developer Associate
 - Microsoft Certified: Dynamics 365 Business Central Functional Consultant Associate
 - Microsoft Certified: Dynamics 365 Customer Experience Analyst Associate
@@ -233,6 +235,8 @@ credits toward the certification:
 
 ### Prerequisite certification pages
 
+- AI Agent Builder Associate: <https://learn.microsoft.com/credentials/certifications/ai-agent-builder-associate/>
+- Azure AI Apps and Agents Developer Associate (beta): <https://learn.microsoft.com/credentials/certifications/azure-ai-apps-and-agents-developer-associate/>
 - Dynamics 365 Business Central Developer Associate: <https://learn.microsoft.com/credentials/certifications/d365-business-central-developer-associate/>
 - Dynamics 365 Business Central Functional Consultant Associate: <https://learn.microsoft.com/credentials/certifications/d365-business-central-functional-consultant-associate/>
 - Dynamics 365 Customer Experience Analyst Associate: <https://learn.microsoft.com/credentials/certifications/d365-customer-experience-analyst-associate/>
@@ -268,4 +272,5 @@ These are the documentation hubs Microsoft highlights in the AB-100 study guide 
 
 | Date | Change |
 | --- | --- |
+| 2026-07-09 | Re-verified against the Microsoft Learn study guide, which now carries "Skills measured as of July 22, 2026". Microsoft grades every delta as **Minor** (audience profile wording, the "Design AI and agents for business solutions" group, and the "Design the ALM process" group); both functional-group headers are marked **No change**. All skills-measured bullets and the three domain weight ranges already matched this file verbatim, so no objective text changed. Prerequisites grew from 12 to **14**: added **Azure AI Apps and Agents Developer Associate (beta)** and **AI Agent Builder Associate**. The audience-profile phrase was re-checked against the certification page and correctly remains "Microsoft responsible AI guidelines" (lowercase, not "Responsible AI Standard"). Exam facts confirmed: 100 minutes, passing score 700, Advanced (Expert), 12-month renewal, generally available. |
 | 2026-04-21 | Initial sync from Microsoft Learn study guide and certification page. Captured verbatim skills-measured bullets across all three domains, full audience profile (competencies and responsibilities), domain weight ranges (25-30% / 25-30% / 40-45%), full list of 12 prerequisite associate-level certifications, and official reference URLs. |
