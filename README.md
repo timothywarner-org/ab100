@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/timothywarner-org-ab100-badge.png)](https://mseep.ai/app/timothywarner-org-ab100)
+
 <!-- Cover Image -->
 <p align="center">
   <img src="images/cover.png" alt="AB-100: Agentic AI Business Solutions Architect" width="600"/>
